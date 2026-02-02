@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkish Peshtemals | Cotton Textile</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#0A1628',
+                        'navy-light': '#1A2744',
+                        'steel': '#374151',
+                        'slate': '#64748B',
+                        'silver': '#94A3B8',
+                        'pearl': '#F8FAFC',
+                        'gold': '#B8860B',
+                        'gold-light': '#D4A843',
+                        'success': '#059669',
+                    },
+                    fontFamily: {
+                        'display': ['Libre Baskerville', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10, 22, 40, 0.15); }
+        .product-overlay { position: absolute; inset: 0; background: rgba(10, 22, 40, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+        .group:hover .product-overlay { opacity: 1; }
+        .header-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        /* Page Loader */
+        .page-loader { position: fixed; inset: 0; background: #0A1628; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s ease; }
+        .page-loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-images { display: flex; gap: 8px; margin-bottom: 24px; }
+        .loader-images img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; opacity: 0.3; animation: loaderPulse 1.5s ease-in-out infinite; }
+        .loader-images img:nth-child(1) { animation-delay: 0s; }
+        .loader-images img:nth-child(2) { animation-delay: 0.2s; }
+        .loader-images img:nth-child(3) { animation-delay: 0.4s; }
+        .loader-images img:nth-child(4) { animation-delay: 0.6s; }
+        .loader-images img:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes loaderPulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
+        .loader-text { color: #B8860B; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+    </style>
+</head>
+<body class="font-body text-steel bg-white">
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-images">
+            <img src="img-deploy/Nazmi-AKyuz_RIO__SultansGem_(382).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_aegean__SultansGem_(462).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_colorful__SultansGem_(342).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_SPRING__SultansGem_(362).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_palm__SultansGem_(326).jpg" alt="">
+        </div>
+        <div class="loader-text">Cotton Textile</div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-white transition-all duration-300 border-b border-gray-100" id="header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-4">
+                    <div class="w-12 h-12 border-2 border-navy flex items-center justify-center">
+                        <span class="font-display text-navy text-xl font-bold">CT</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-display text-xl text-navy block leading-tight">Cotton Textile</span>
+                        <span class="text-[11px] text-slate tracking-[0.15em] uppercase">Premium Manufacturing</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="index.html" class="text-sm font-medium text-steel hover:text-navy">Home</a></li>
+                    <li class="relative group">
+                        <button class="text-sm font-medium text-navy flex items-center gap-1">
+                            Products
+                            <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div class="bg-white border border-gray-200 shadow-xl min-w-[200px]">
+                                <a href="peshtemals.html" class="block px-5 py-3 text-sm text-navy font-medium bg-pearl border-b border-gray-100">
+                                    <i class="fas fa-water text-gold mr-2"></i>Peshtemals
+                                </a>
+                                <a href="towels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
+                                    <i class="fas fa-spa text-gold mr-2"></i>Towels
+                                </a>
+                                <a href="robes.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
+                                    <i class="fas fa-tshirt text-gold mr-2"></i>Robes
+                                </a>
+                                <a href="beaches-hotels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors">
+                                    <i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html#about" class="text-sm font-medium text-steel hover:text-navy">About Us</a></li>
+                    <li><a href="index.html#contact" class="text-sm font-medium text-steel hover:text-navy">Contact</a></li>
+                </ul>
+
+                <div class="flex items-center gap-4">
+                    <a href="https://wa.me/905XXXXXXXXXX?text=I'm%20interested%20in%20Turkish%20Peshtemals" target="_blank"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-white text-sm font-medium hover:bg-navy-light transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="hidden sm:inline">Get Quote</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="bg-pearl border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center gap-2 text-sm">
+                <a href="index.html" class="text-slate hover:text-navy">Home</a>
+                <i class="fas fa-chevron-right text-xs text-silver"></i>
+                <span class="text-navy font-medium">Peshtemals</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 bg-navy overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="img-deploy/Nazmi_sku#sultan-display#bodrum__IMG_0002.jpg" alt="" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-8 h-px bg-gold"></div>
+                <span class="text-gold text-sm font-medium tracking-wider uppercase">Premium Collection</span>
+                <div class="w-8 h-px bg-gold"></div>
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl text-white mb-6">Turkish Peshtemals</h1>
+            <p class="text-white/70 text-lg max-w-2xl mx-auto">
+                Traditional hand-woven Turkish towels crafted from 100% organic Aegean cotton.
+                Lightweight, quick-drying, and perfect for beach, spa, and home.
+            </p>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+                <!-- Foca -->
+                <a href="products/foca.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#stone-display#foca__Başlıksız-2.jpg"
+                            alt="Foca Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-navy text-white text-xs font-medium">
+                            Best Seller
+                        </div>
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Foca</h3>
+                        <p class="text-slate text-sm">Stone Collection</p>
+                    </div>
+                </a>
+
+                <!-- Bodrum -->
+                <a href="products/bodrum.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#sultan-display#bodrum__IMG_0002.jpg"
+                            alt="Bodrum Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Bodrum</h3>
+                        <p class="text-slate text-sm">Sultan Collection</p>
+                    </div>
+                </a>
+
+                <!-- Cesme -->
+                <a href="products/cesme.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#sultantrend-display#cesme__IMG_0074.jpg"
+                            alt="Cesme Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
+                            New
+                        </div>
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Cesme</h3>
+                        <p class="text-slate text-sm">Sultan Trend Collection</p>
+                    </div>
+                </a>
+
+                <!-- Datca -->
+                <a href="products/datca.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#vegas-display#datca__SultansGem_(534).jpg"
+                            alt="Datca Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Datca</h3>
+                        <p class="text-slate text-sm">Vegas Collection</p>
+                    </div>
+                </a>
+
+                <!-- Fethiye -->
+                <a href="products/fethiye.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#zebra-display#fethiye__Başlıksız-65.jpg"
+                            alt="Fethiye Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Fethiye</h3>
+                        <p class="text-slate text-sm">Zebra Collection</p>
+                    </div>
+                </a>
+
+                <!-- Kas -->
+                <a href="products/kas.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#multicolor-display#kas__SultansGem_(442).jpg"
+                            alt="Kas Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-success text-white text-xs font-medium">
+                            Popular
+                        </div>
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Kas</h3>
+                        <p class="text-slate text-sm">Multicolor Collection</p>
+                    </div>
+                </a>
+
+                <!-- Akyaka -->
+                <a href="products/akyaka.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#mandala-display#akyaka__SultansGem_(402).jpg"
+                            alt="Akyaka Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Akyaka</h3>
+                        <p class="text-slate text-sm">Mandala Collection</p>
+                    </div>
+                </a>
+
+                <!-- Alacati -->
+                <a href="products/alacati.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#mikrokoton-display#alacati__IMG_0034.jpg"
+                            alt="Alacati Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Alacati</h3>
+                        <p class="text-slate text-sm">Micro Cotton Collection</p>
+                    </div>
+                </a>
+
+                <!-- Asos -->
+                <a href="products/asos.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#netherland-display#asos__Başlıksız-79.jpg"
+                            alt="Asos Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="product-overlay">
+                            <i class="fas fa-cut text-gold text-2xl mb-2"></i>
+                            <span class="text-white text-sm font-medium">We Offer Knitting</span>
+                            <span class="text-white/60 text-xs mt-1">Custom Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Asos</h3>
+                        <p class="text-slate text-sm">Netherland Collection</p>
+                    </div>
+                </a>
+
+                <!-- Yalikavak -->
+                <a href="products/yalikavak.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#bugra-display#yalikavak__Başlıksız-83.jpg"
+                            alt="Yalikavak Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
+                            Premium
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Yalikavak</h3>
+                        <p class="text-slate text-sm">Bugra Collection</p>
+                    </div>
+                </a>
+
+                <!-- RIO -->
+                <a href="products/rio.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_RIO__SultansGem_(382).jpg"
+                            alt="Rio Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
+                            New
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Rio</h3>
+                        <p class="text-slate text-sm">Rio Collection</p>
+                    </div>
+                </a>
+
+                <!-- SPRING -->
+                <a href="products/spring.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_SPRING__SultansGem_(362).jpg"
+                            alt="Spring Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-success text-white text-xs font-medium">
+                            Popular
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Spring</h3>
+                        <p class="text-slate text-sm">Spring Collection</p>
+                    </div>
+                </a>
+
+                <!-- Aegean -->
+                <a href="products/aegean.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_aegean__SultansGem_(462).jpg"
+                            alt="Aegean Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Aegean</h3>
+                        <p class="text-slate text-sm">Aegean Collection</p>
+                    </div>
+                </a>
+
+                <!-- Bambu -->
+                <a href="products/bambu.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_bambu__IMG_0089_copy.jpg"
+                            alt="Bambu Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-navy text-white text-xs font-medium">
+                            Eco-Friendly
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Bambu</h3>
+                        <p class="text-slate text-sm">Bamboo Collection</p>
+                    </div>
+                </a>
+
+                <!-- Colorful -->
+                <a href="products/colorful.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_colorful__SultansGem_(342).jpg"
+                            alt="Colorful Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Colorful</h3>
+                        <p class="text-slate text-sm">Colorful Collection</p>
+                    </div>
+                </a>
+
+                <!-- Marrakesh -->
+                <a href="products/marrakesh.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_marrakesh__SultansGem_(306).jpg"
+                            alt="Marrakesh Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
+                            Exotic
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Marrakesh</h3>
+                        <p class="text-slate text-sm">Marrakesh Collection</p>
+                    </div>
+                </a>
+
+                <!-- Palm -->
+                <a href="products/palm.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_palm__SultansGem_(326).jpg"
+                            alt="Palm Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Palm</h3>
+                        <p class="text-slate text-sm">Palm Collection</p>
+                    </div>
+                </a>
+
+                <!-- Zebra New -->
+                <a href="products/zebra-new.html" class="group hover-lift bg-white border border-gray-200">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi-AKyuz_zebra__IMG_0001.jpg"
+                            alt="Zebra Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-success text-white text-xs font-medium">
+                            Trending
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Zebra</h3>
+                        <p class="text-slate text-sm">Zebra Collection</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-pearl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-2xl text-navy"></i>
+                    </div>
+                    <h3 class="font-semibold text-navy mb-2">100% Organic Cotton</h3>
+                    <p class="text-slate text-sm">Premium Aegean cotton from Turkey</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hand-sparkles text-2xl text-navy"></i>
+                    </div>
+                    <h3 class="font-semibold text-navy mb-2">Hand-Woven</h3>
+                    <p class="text-slate text-sm">Traditional Turkish techniques</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-wind text-2xl text-navy"></i>
+                    </div>
+                    <h3 class="font-semibold text-navy mb-2">Quick Dry</h3>
+                    <p class="text-slate text-sm">Lightweight and fast drying</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-certificate text-2xl text-navy"></i>
+                    </div>
+                    <h3 class="font-semibold text-navy mb-2">Oeko-Tex Certified</h3>
+                    <p class="text-slate text-sm">Safe for skin contact</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-navy">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-3xl text-white mb-4">Ready to Order?</h2>
+            <p class="text-white/70 mb-8">Contact us for wholesale pricing, custom branding, and private label options.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/905XXXXXXXXXX?text=I'm%20interested%20in%20ordering%20Turkish%20Peshtemals" target="_blank"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-success text-white font-semibold hover:bg-success/90 transition-colors">
+                    <i class="fab fa-whatsapp text-xl"></i>WhatsApp Us
+                </a>
+                <a href="index.html#contact"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-navy transition-colors">
+                    <i class="fas fa-envelope"></i>Send Inquiry
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy-light text-white/80 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 border-2 border-white/30 flex items-center justify-center">
+                            <span class="font-display text-white text-xl font-bold">CT</span>
+                        </div>
+                        <div>
+                            <span class="font-display text-xl text-white block">Cotton Textile</span>
+                            <span class="text-xs text-white/40 tracking-wider uppercase">Premium Manufacturing</span>
+                        </div>
+                    </div>
+                    <p class="text-white/60 max-w-md mb-6">
+                        Leading Turkish textile manufacturer specializing in premium peshtemals,
+                        towels, and bathrobes for B2B clients worldwide.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Products</h4>
+                    <ul class="space-y-3">
+                        <li><a href="peshtemals.html" class="text-white/60 hover:text-gold transition-colors">Peshtemals</a></li>
+                        <li><a href="towels.html" class="text-white/60 hover:text-gold transition-colors">Towels</a></li>
+                        <li><a href="robes.html" class="text-white/60 hover:text-gold transition-colors">Robes</a></li>
+                        <li><a href="beaches-hotels.html" class="text-white/60 hover:text-gold transition-colors">Beaches & Hotels</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-white/60 hover:text-gold transition-colors">Home</a></li>
+                        <li><a href="index.html#about" class="text-white/60 hover:text-gold transition-colors">About Us</a></li>
+                        <li><a href="index.html#certifications" class="text-white/60 hover:text-gold transition-colors">Certifications</a></li>
+                        <li><a href="index.html#contact" class="text-white/60 hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Contact</h4>
+                    <ul class="space-y-3 text-white/60 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-gold mt-1"></i>Denizli, Turkey</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-phone-alt text-gold"></i>+90 (258) 123 45 67</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-envelope text-gold"></i>sales@cottontextile.com</li>
+                        <li class="pt-2"><a href="https://wa.me/905XXXXXXXXXX" target="_blank" class="inline-flex items-center gap-2 text-success hover:text-success/80 transition-colors"><i class="fab fa-whatsapp"></i>WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">© 2024 Cotton Textile. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-white/40">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/905XXXXXXXXXX?text=I'm%20interested%20in%20Turkish%20Peshtemals" target="_blank"
+        class="fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 rounded-full">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('header-scrolled', window.scrollY > 50);
+        });
+
+        // Page Loader
+        const pageLoader = document.getElementById('pageLoader');
+        window.addEventListener('load', () => { setTimeout(() => { pageLoader.classList.add('hidden'); }, 800); });
+        document.querySelectorAll('a[href]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel')) {
+                    e.preventDefault();
+                    pageLoader.classList.remove('hidden');
+                    setTimeout(() => { window.location.href = href; }, 400);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

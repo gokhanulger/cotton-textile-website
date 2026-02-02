@@ -1,0 +1,32 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Sensitive files
+.env
+.env.local
+*.pem
+*.key
+config.local.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
+
+# Old deploy folder
+deploy/
+*.docx
+
+# Large source image folders (not needed for deployment)
+Nazmi/
+Nazmi AKyuz/

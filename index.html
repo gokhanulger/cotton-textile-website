@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotton Textile | Premium Turkish Textile Manufacturing | B2B Export</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts - Corporate -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#0A1628',
+                        'navy-light': '#1A2744',
+                        'steel': '#374151',
+                        'slate': '#64748B',
+                        'silver': '#94A3B8',
+                        'pearl': '#F8FAFC',
+                        'white': '#FFFFFF',
+                        'gold': '#B8860B',
+                        'gold-light': '#D4A843',
+                        'success': '#059669',
+                    },
+                    fontFamily: {
+                        'display': ['Libre Baskerville', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* Subtle Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Professional Hover */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(10, 22, 40, 0.15);
+        }
+
+        /* Underline Animation */
+        .link-underline {
+            position: relative;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #B8860B;
+            transition: width 0.3s ease;
+        }
+        .link-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Section Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Glass */
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Page Loader */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: #0A1628;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-images {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .loader-images img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            opacity: 0.3;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+        .loader-images img:nth-child(1) { animation-delay: 0s; }
+        .loader-images img:nth-child(2) { animation-delay: 0.2s; }
+        .loader-images img:nth-child(3) { animation-delay: 0.4s; }
+        .loader-images img:nth-child(4) { animation-delay: 0.6s; }
+        .loader-images img:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .loader-text {
+            color: #B8860B;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="font-body text-steel bg-white">
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-images">
+            <img src="img-deploy/Nazmi-AKyuz_RIO__SultansGem_(382).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_aegean__SultansGem_(462).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_colorful__SultansGem_(342).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_SPRING__SultansGem_(362).jpg" alt="">
+            <img src="img-deploy/Nazmi-AKyuz_palm__SultansGem_(326).jpg" alt="">
+        </div>
+        <div class="loader-text">Cotton Textile</div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="bg-navy text-white text-sm py-2 hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-phone-alt text-gold text-xs"></i>
+                    +90 (258) 123 45 67
+                </span>
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-envelope text-gold text-xs"></i>
+                    info@cottontextile.com
+                </span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-white/60">Oeko-Tex® Certified</span>
+                <span class="text-white/40">|</span>
+                <span class="text-white/60">ISO 9001:2015</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white transition-all duration-300" id="header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-4">
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="w-12 h-12 border-2 border-navy flex items-center justify-center">
+                            <span class="font-display text-navy text-xl font-bold">CT</span>
+                        </div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-display text-xl text-navy block leading-tight">Cotton Textile</span>
+                        <span class="text-[11px] text-slate tracking-[0.15em] uppercase">Premium Manufacturing</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="#home" class="text-sm font-medium text-navy link-underline">Home</a></li>
+                    <li class="relative group">
+                        <button class="text-sm font-medium text-steel hover:text-navy link-underline flex items-center gap-1">
+                            Products
+                            <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div class="bg-white border border-gray-200 shadow-xl min-w-[200px]">
+                                <a href="peshtemals.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
+                                    <i class="fas fa-water text-gold mr-2"></i>Peshtemals
+                                </a>
+                                <a href="towels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
+                                    <i class="fas fa-spa text-gold mr-2"></i>Towels
+                                </a>
+                                <a href="robes.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
+                                    <i class="fas fa-tshirt text-gold mr-2"></i>Robes
+                                </a>
+                                <a href="beaches-hotels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors">
+                                    <i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#about" class="text-sm font-medium text-steel hover:text-navy link-underline">About Us</a></li>
+                    <li><a href="#certifications" class="text-sm font-medium text-steel hover:text-navy link-underline">Certifications</a></li>
+                    <li><a href="#contact" class="text-sm font-medium text-steel hover:text-navy link-underline">Contact</a></li>
+                </ul>
+
+                <!-- CTA -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="https://wa.me/905XXXXXXXXXX" target="_blank"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-white text-sm font-medium hover:bg-navy-light transition-colors">
+                        <i class="fab fa-whatsapp"></i>
+                        Request Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center text-navy">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-2xl lg:hidden z-50">
+            <div class="p-6 h-full flex flex-col">
+                <div class="flex justify-between items-center mb-10">
+                    <span class="font-display text-xl text-navy">Menu</span>
+                    <button id="closeMobileMenu" class="w-10 h-10 flex items-center justify-center">
+                        <i class="fas fa-times text-xl text-navy"></i>
+                    </button>
+                </div>
+                <ul class="flex flex-col gap-1 flex-1">
+                    <li><a href="#home" class="block px-4 py-3 text-navy font-medium hover:bg-pearl transition-colors">Home</a></li>
+                    <li>
+                        <button id="mobileProductsBtn" class="w-full flex items-center justify-between px-4 py-3 text-steel font-medium hover:bg-pearl transition-colors">
+                            Products
+                            <i class="fas fa-chevron-down text-xs transition-transform" id="mobileProductsIcon"></i>
+                        </button>
+                        <div id="mobileProductsMenu" class="hidden bg-pearl/50">
+                            <a href="peshtemals.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
+                                <i class="fas fa-water text-gold mr-2"></i>Peshtemals
+                            </a>
+                            <a href="towels.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
+                                <i class="fas fa-spa text-gold mr-2"></i>Towels
+                            </a>
+                            <a href="robes.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
+                                <i class="fas fa-tshirt text-gold mr-2"></i>Robes
+                            </a>
+                            <a href="beaches-hotels.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
+                                <i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels
+                            </a>
+                        </div>
+                    </li>
+                    <li><a href="#about" class="block px-4 py-3 text-steel font-medium hover:bg-pearl transition-colors">About Us</a></li>
+                    <li><a href="#certifications" class="block px-4 py-3 text-steel font-medium hover:bg-pearl transition-colors">Certifications</a></li>
+                    <li><a href="#contact" class="block px-4 py-3 text-steel font-medium hover:bg-pearl transition-colors">Contact</a></li>
+                </ul>
+                <a href="https://wa.me/905XXXXXXXXXX" target="_blank"
+                    class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-navy text-white font-medium">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    Request Quote
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[90vh] flex items-center bg-navy overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0">
+            <img src="img-deploy/Nazmi-AKyuz_colorful__SultansGem_(342).jpg"
+                alt="Textile Manufacturing"
+                class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/95 to-navy/80"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Text -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6 fade-up">
+                        <div class="w-12 h-px bg-gold"></div>
+                        <span class="text-gold text-sm font-medium tracking-wider uppercase">Established 1998</span>
+                    </div>
+
+                    <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6 fade-up delay-1">
+                        Premium Turkish
+                        <span class="block text-gold">Textile Manufacturing</span>
+                    </h1>
+
+                    <p class="text-lg text-white/70 max-w-lg mb-8 leading-relaxed fade-up delay-2">
+                        Trusted B2B partner for luxury hotels, spas, and retailers worldwide.
+                        100% organic cotton peshtemals, towels, and bathrobes with Oeko-Tex certification.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mb-12 fade-up delay-3">
+                        <a href="#products" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-semibold hover:bg-gold-light transition-colors">
+                            View Catalog
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-medium hover:bg-white/10 transition-colors">
+                            Contact Sales
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/10 fade-up delay-4">
+                        <div>
+                            <p class="font-display text-3xl text-gold mb-1">25+</p>
+                            <p class="text-white/50 text-sm">Years Experience</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-3xl text-gold mb-1">50+</p>
+                            <p class="text-white/50 text-sm">Export Countries</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-3xl text-gold mb-1">500+</p>
+                            <p class="text-white/50 text-sm">B2B Clients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="hidden lg:block fade-up delay-2">
+                    <div class="relative">
+                        <img src="img-deploy/Nazmi-AKyuz_RIO__SultansGem_(382).jpg"
+                            alt="Premium Cotton Products"
+                            class="w-full aspect-[4/5] object-cover">
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-pearl flex items-center justify-center">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/OEKO-TEX_Logo.svg/200px-OEKO-TEX_Logo.svg.png"
+                                        alt="Oeko-Tex"
+                                        class="w-12 h-auto opacity-80">
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-navy">Oeko-Tex® Standard 100</p>
+                                    <p class="text-sm text-slate">Certified Safe Textiles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Banner -->
+    <div class="bg-pearl py-8 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <div class="flex items-center gap-3 text-slate">
+                    <i class="fas fa-certificate text-gold text-xl"></i>
+                    <span class="text-sm font-medium">Oeko-Tex® Certified</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate">
+                    <i class="fas fa-award text-gold text-xl"></i>
+                    <span class="text-sm font-medium">ISO 9001:2015</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate">
+                    <i class="fas fa-leaf text-gold text-xl"></i>
+                    <span class="text-sm font-medium">100% Organic Cotton</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate">
+                    <i class="fas fa-globe text-gold text-xl"></i>
+                    <span class="text-sm font-medium">Global Export</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-8 h-px bg-gold"></div>
+                    <span class="text-gold text-sm font-medium tracking-wider uppercase">Product Catalog</span>
+                    <div class="w-8 h-px bg-gold"></div>
+                </div>
+                <h2 class="font-display text-3xl md:text-4xl text-navy mb-4">
+                    Premium Textile Collections
+                </h2>
+                <p class="text-slate text-lg">
+                    Handcrafted with finest Aegean cotton using traditional Turkish weaving techniques.
+                    Available for wholesale and private label manufacturing.
+                </p>
+            </div>
+
+            <!-- Peshtemal Collection Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+                <!-- Foca -->
+                <a href="products/foca.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#stone-display#foca__Başlıksız-2.jpg"
+                            alt="Foca Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-navy text-white text-xs font-medium">
+                            Best Seller
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Foca</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Bodrum -->
+                <a href="products/bodrum.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#sultan-display#bodrum__IMG_0002.jpg"
+                            alt="Bodrum Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Bodrum</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Cesme -->
+                <a href="products/cesme.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#sultantrend-display#cesme__IMG_0074.jpg"
+                            alt="Cesme Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
+                            New
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Cesme</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Datca -->
+                <a href="products/datca.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#vegas-display#datca__SultansGem_(534).jpg"
+                            alt="Datca Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Datca</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Fethiye -->
+                <a href="products/fethiye.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#zebra-display#fethiye__Başlıksız-65.jpg"
+                            alt="Fethiye Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Fethiye</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Kas -->
+                <a href="products/kas.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#multicolor-display#kas__SultansGem_(442).jpg"
+                            alt="Kas Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-success text-white text-xs font-medium">
+                            Popular
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Kas</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Akyaka -->
+                <a href="products/akyaka.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#mandala-display#akyaka__SultansGem_(402).jpg"
+                            alt="Akyaka Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Akyaka</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Alacati -->
+                <a href="products/alacati.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#mikrokoton-display#alacati__IMG_0034.jpg"
+                            alt="Alacati Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Alacati</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Asos -->
+                <a href="products/asos.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#netherland-display#asos__Başlıksız-79.jpg"
+                            alt="Asos Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Asos</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+                <!-- Yalikavak -->
+                <a href="products/yalikavak.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                    <div class="relative aspect-square overflow-hidden bg-pearl">
+                        <img src="img-deploy/Nazmi_sku#bugra-display#yalikavak__Başlıksız-83.jpg"
+                            alt="Yalikavak Peshtemal"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
+                            Premium
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-lg text-navy mb-1">Yalikavak</h3>
+                        <p class="text-slate text-sm">Premium Peshtemal</p>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- B2B CTA -->
+            <div class="mt-16 bg-navy p-8 md:p-12 reveal">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-display text-2xl md:text-3xl text-white mb-4">
+                            Private Label & OEM Manufacturing
+                        </h3>
+                        <p class="text-white/70 mb-6">
+                            Custom branding, logo embroidery, and bespoke product development for your business.
+                            Minimum order quantities start from 500 pieces.
+                        </p>
+                        <ul class="text-white/70 text-sm space-y-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-gold"></i> Custom label & packaging</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-gold"></i> Logo embroidery & printing</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-gold"></i> Custom color matching</li>
+                        </ul>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <a href="https://wa.me/905XXXXXXXXXX?text=I'm%20interested%20in%20private%20label%20manufacturing" target="_blank"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-gold text-navy font-semibold hover:bg-gold-light transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                            Discuss Your Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-28 bg-pearl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Images -->
+                <div class="relative reveal">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="img-deploy/Nazmi-AKyuz_SPRING__SultansGem_(362).jpg"
+                            alt="Cotton Fields"
+                            class="w-full aspect-[3/4] object-cover">
+                        <img src="img-deploy/Nazmi-AKyuz_aegean__SultansGem_(462).jpg"
+                            alt="Weaving Process"
+                            class="w-full aspect-[3/4] object-cover mt-8">
+                    </div>
+                    <!-- Stats Box -->
+                    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-navy text-white p-6 min-w-[280px]">
+                        <div class="grid grid-cols-2 gap-6 text-center">
+                            <div>
+                                <p class="font-display text-3xl text-gold">1998</p>
+                                <p class="text-sm text-white/60">Established</p>
+                            </div>
+                            <div>
+                                <p class="font-display text-3xl text-gold">150+</p>
+                                <p class="text-sm text-white/60">Employees</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-px bg-gold"></div>
+                        <span class="text-gold text-sm font-medium tracking-wider uppercase">About Us</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl md:text-4xl text-navy mb-6">
+                        Trusted Textile Partner <br>Since 1998
+                    </h2>
+
+                    <p class="text-slate text-lg mb-6 leading-relaxed">
+                        <strong class="text-navy">Cotton Textile</strong> is a leading Turkish textile manufacturer
+                        based in Denizli, Turkey's textile heartland. For over 25 years, we've been the trusted
+                        B2B partner for hotels, spas, retailers, and hospitality brands worldwide.
+                    </p>
+
+                    <p class="text-slate mb-8 leading-relaxed">
+                        Our commitment to quality is backed by international certifications including
+                        <strong class="text-navy">Oeko-Tex Standard 100</strong> and <strong class="text-navy">ISO 9001:2015</strong>.
+                        Every product is crafted using 100% organic Aegean cotton with traditional hand-weaving techniques.
+                    </p>
+
+                    <!-- Features -->
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-industry text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy mb-1">Modern Facility</h4>
+                                <p class="text-sm text-slate">10,000 m² production facility</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-truck text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy mb-1">Global Shipping</h4>
+                                <p class="text-sm text-slate">DDP, FOB, CIF options</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-palette text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy mb-1">Custom Production</h4>
+                                <p class="text-sm text-slate">Private label, OEM & Knitting</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-headset text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy mb-1">Dedicated Support</h4>
+                                <p class="text-sm text-slate">24/7 B2B customer service</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-8 h-px bg-gold"></div>
+                    <span class="text-gold text-sm font-medium tracking-wider uppercase">Quality Assurance</span>
+                    <div class="w-8 h-px bg-gold"></div>
+                </div>
+                <h2 class="font-display text-3xl md:text-4xl text-navy mb-4">
+                    Certifications & Standards
+                </h2>
+                <p class="text-slate text-lg max-w-2xl mx-auto">
+                    Our commitment to quality and sustainability is verified by leading international certification bodies.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                <div class="bg-pearl p-8 text-center hover-lift">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white flex items-center justify-center rounded-full">
+                        <i class="fas fa-certificate text-3xl text-gold"></i>
+                    </div>
+                    <h4 class="font-semibold text-navy mb-2">Oeko-Tex® Standard 100</h4>
+                    <p class="text-sm text-slate">Tested for harmful substances</p>
+                </div>
+                <div class="bg-pearl p-8 text-center hover-lift">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white flex items-center justify-center rounded-full">
+                        <i class="fas fa-award text-3xl text-gold"></i>
+                    </div>
+                    <h4 class="font-semibold text-navy mb-2">ISO 9001:2015</h4>
+                    <p class="text-sm text-slate">Quality management system</p>
+                </div>
+                <div class="bg-pearl p-8 text-center hover-lift">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white flex items-center justify-center rounded-full">
+                        <i class="fas fa-leaf text-3xl text-gold"></i>
+                    </div>
+                    <h4 class="font-semibold text-navy mb-2">GOTS Certified</h4>
+                    <p class="text-sm text-slate">Global Organic Textile Standard</p>
+                </div>
+                <div class="bg-pearl p-8 text-center hover-lift">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white flex items-center justify-center rounded-full">
+                        <i class="fas fa-recycle text-3xl text-gold"></i>
+                    </div>
+                    <h4 class="font-semibold text-navy mb-2">Sustainable Production</h4>
+                    <p class="text-sm text-slate">Eco-friendly manufacturing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-28 bg-navy">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Info -->
+                <div class="reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-px bg-gold"></div>
+                        <span class="text-gold text-sm font-medium tracking-wider uppercase">Contact Us</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl md:text-4xl text-white mb-6">
+                        Let's Discuss Your <br>Business Needs
+                    </h2>
+
+                    <p class="text-white/70 text-lg mb-10">
+                        Ready to partner with a trusted Turkish textile manufacturer?
+                        Our B2B sales team is ready to assist with quotes, samples, and custom orders.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-map-marker-alt text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Headquarters</h4>
+                                <p class="text-white/60">Organized Industrial Zone, 5th Street No: 42<br>Denizli 20100, Turkey</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-phone-alt text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Phone / WhatsApp</h4>
+                                <p class="text-white/60">+90 (258) 123 45 67<br>+90 (532) 123 45 67</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-envelope text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Email</h4>
+                                <p class="text-white/60">sales@cottontextile.com<br>info@cottontextile.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-clock text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Business Hours</h4>
+                                <p class="text-white/60">Mon - Fri: 08:30 - 18:00 (GMT+3)<br>Sat: 09:00 - 14:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="reveal">
+                    <div class="bg-white p-8 md:p-10">
+                        <h3 class="font-display text-2xl text-navy mb-2">Request a Quote</h3>
+                        <p class="text-slate mb-8">Fill out the form and our sales team will respond within 24 hours.</p>
+
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-navy mb-2">Full Name *</label>
+                                    <input type="text" name="name" required
+                                        class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-navy transition-colors"
+                                        placeholder="John Smith">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-navy mb-2">Company *</label>
+                                    <input type="text" name="company" required
+                                        class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-navy transition-colors"
+                                        placeholder="Company Name">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-navy mb-2">Email *</label>
+                                    <input type="email" name="email" required
+                                        class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-navy transition-colors"
+                                        placeholder="john@company.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-navy mb-2">Phone</label>
+                                    <input type="tel" name="phone"
+                                        class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-navy transition-colors"
+                                        placeholder="+1 234 567 8900">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-navy mb-2">Product Interest</label>
+                                <select name="product"
+                                    class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-navy transition-colors">
+                                    <option value="">Select product category...</option>
+                                    <option value="peshtemal">Turkish Peshtemal</option>
+                                    <option value="bathrobe">Bathrobes</option>
+                                    <option value="hotel-towel">Hotel Towels</option>
+                                    <option value="beach">Beach Collection</option>
+                                    <option value="baby">Baby Textile</option>
+                                    <option value="spa">Spa & Wellness</option>
+                                    <option value="private-label">Private Label / OEM</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-navy mb-2">Message *</label>
+                                <textarea name="message" rows="4" required
+                                    class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-navy transition-colors resize-none"
+                                    placeholder="Please describe your requirements, quantities, and any specific needs..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-navy text-white font-semibold hover:bg-navy-light transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Inquiry
+                            </button>
+                        </form>
+
+                        <div class="mt-8 pt-8 border-t border-gray-200 text-center">
+                            <p class="text-slate text-sm mb-4">Prefer direct communication?</p>
+                            <a href="https://wa.me/905XXXXXXXXXX?text=Hello,%20I'm%20interested%20in%20your%20textile%20products%20for%20B2B%20inquiry." target="_blank"
+                                class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-success text-white font-medium hover:bg-success/90 transition-colors">
+                                <i class="fab fa-whatsapp text-lg"></i>
+                                Chat on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-light text-white/80 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 border-2 border-white/30 flex items-center justify-center">
+                            <span class="font-display text-white text-xl font-bold">CT</span>
+                        </div>
+                        <div>
+                            <span class="font-display text-xl text-white block">Cotton Textile</span>
+                            <span class="text-xs text-white/40 tracking-wider uppercase">Premium Manufacturing</span>
+                        </div>
+                    </div>
+                    <p class="text-white/60 max-w-md mb-6">
+                        Leading Turkish textile manufacturer specializing in premium peshtemals,
+                        towels, and bathrobes for B2B clients worldwide. Oeko-Tex certified since 1998.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Products</h4>
+                    <ul class="space-y-3">
+                        <li><a href="peshtemals.html" class="text-white/60 hover:text-gold transition-colors">Peshtemals</a></li>
+                        <li><a href="towels.html" class="text-white/60 hover:text-gold transition-colors">Towels</a></li>
+                        <li><a href="robes.html" class="text-white/60 hover:text-gold transition-colors">Robes</a></li>
+                        <li><a href="beaches-hotels.html" class="text-white/60 hover:text-gold transition-colors">Beaches & Hotels</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-white/60 hover:text-gold transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-white/60 hover:text-gold transition-colors">About Us</a></li>
+                        <li><a href="#certifications" class="text-white/60 hover:text-gold transition-colors">Certifications</a></li>
+                        <li><a href="#contact" class="text-white/60 hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Contact</h4>
+                    <ul class="space-y-3 text-white/60 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt text-gold mt-1"></i>
+                            Denizli, Turkey
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone-alt text-gold"></i>
+                            +90 (258) 123 45 67
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-gold"></i>
+                            sales@cottontextile.com
+                        </li>
+                        <li class="pt-2">
+                            <a href="https://wa.me/905XXXXXXXXXX" target="_blank" class="inline-flex items-center gap-2 text-success hover:text-success/80 transition-colors">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">
+                    © 2024 Cotton Textile. All rights reserved.
+                </p>
+                <div class="flex gap-6 text-sm text-white/40">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/905XXXXXXXXXX?text=Hello,%20I'm%20interested%20in%20your%20textile%20products." target="_blank"
+        class="fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeMobileMenu.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        });
+
+        // Mobile Products Dropdown
+        const mobileProductsBtn = document.getElementById('mobileProductsBtn');
+        const mobileProductsMenu = document.getElementById('mobileProductsMenu');
+        const mobileProductsIcon = document.getElementById('mobileProductsIcon');
+
+        mobileProductsBtn.addEventListener('click', () => {
+            mobileProductsMenu.classList.toggle('hidden');
+            mobileProductsIcon.classList.toggle('rotate-180');
+        });
+
+        // Header Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Reveal on Scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const name = formData.get('name');
+            const company = formData.get('company');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const product = formData.get('product');
+            const message = formData.get('message');
+
+            let whatsappMessage = `B2B Inquiry from Website%0A%0A`;
+            whatsappMessage += `*Name:* ${name}%0A`;
+            whatsappMessage += `*Company:* ${company}%0A`;
+            whatsappMessage += `*Email:* ${email}%0A`;
+            if (phone) whatsappMessage += `*Phone:* ${phone}%0A`;
+            if (product) whatsappMessage += `*Product Interest:* ${product}%0A`;
+            whatsappMessage += `%0A*Message:*%0A${message}`;
+
+            window.open(`https://wa.me/905XXXXXXXXXX?text=${whatsappMessage}`, '_blank');
+            e.target.reset();
+            alert('Redirecting to WhatsApp...');
+        });
+
+        // Page Loader
+        const pageLoader = document.getElementById('pageLoader');
+
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                pageLoader.classList.add('hidden');
+            }, 800);
+        });
+
+        // Show loader on page navigation
+        document.querySelectorAll('a[href]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                // Only show loader for internal page links (not anchors or external)
+                if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel')) {
+                    e.preventDefault();
+                    pageLoader.classList.remove('hidden');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 400);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

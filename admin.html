@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Cotton Textile</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#0A1628',
+                        'navy-light': '#1A2744',
+                        'steel': '#374151',
+                        'slate': '#64748B',
+                        'silver': '#94A3B8',
+                        'pearl': '#F8FAFC',
+                        'gold': '#B8860B',
+                        'gold-light': '#D4A843',
+                        'success': '#059669',
+                    },
+                    fontFamily: {
+                        'display': ['Libre Baskerville', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="font-body text-steel bg-pearl min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-navy text-white">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 border-2 border-white/30 flex items-center justify-center">
+                        <span class="font-display text-white font-bold">CT</span>
+                    </div>
+                    <div>
+                        <span class="font-display text-lg text-white block leading-tight">Cotton Textile</span>
+                        <span class="text-[10px] text-white/50 tracking-[0.15em] uppercase">Admin Panel</span>
+                    </div>
+                </div>
+                <a href="index.html" class="text-sm text-white/70 hover:text-white">
+                    <i class="fas fa-external-link-alt mr-2"></i>View Site
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Page Title -->
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-navy mb-2">Product Management</h1>
+            <p class="text-slate">SKU and Display name mapping for Nazmi Textile products</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-navy/10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-box text-navy text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-navy">10</p>
+                        <p class="text-sm text-slate">Total Products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-check-circle text-success text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-navy">10</p>
+                        <p class="text-sm text-slate">Active Pages</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-gold/10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-images text-gold text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-navy">263</p>
+                        <p class="text-sm text-slate">Total Images</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-industry text-blue-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-navy">Nazmi</p>
+                        <p class="text-sm text-slate">Supplier</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Table -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                <h2 class="text-lg font-semibold text-navy">Peshtemal Products - SKU Mapping</h2>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-slate bg-pearl px-3 py-1 rounded-full">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        SKU = Manufacturer Code for ordering
+                    </span>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-pearl">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">#</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">
+                                <i class="fas fa-tag mr-2 text-gold"></i>SKU (Manufacturer)
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">
+                                <i class="fas fa-store mr-2 text-success"></i>Display Name (Catalog)
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">Images</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">Page</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">1</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    stone
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Foca</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">45</td>
+                            <td class="px-6 py-4">
+                                <a href="products/foca.html" class="text-sm text-blue-600 hover:underline">foca.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/foca.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">2</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    sultan
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Bodrum</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">42</td>
+                            <td class="px-6 py-4">
+                                <a href="products/bodrum.html" class="text-sm text-blue-600 hover:underline">bodrum.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/bodrum.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">3</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    sultantrend
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Cesme</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">38</td>
+                            <td class="px-6 py-4">
+                                <a href="products/cesme.html" class="text-sm text-blue-600 hover:underline">cesme.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/cesme.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">4</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    vegas
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Datca</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">16</td>
+                            <td class="px-6 py-4">
+                                <a href="products/datca.html" class="text-sm text-blue-600 hover:underline">datca.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/datca.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">5</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    zebra
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Fethiye</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">25</td>
+                            <td class="px-6 py-4">
+                                <a href="products/fethiye.html" class="text-sm text-blue-600 hover:underline">fethiye.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/fethiye.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">6</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    multicolor
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Kas</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">19</td>
+                            <td class="px-6 py-4">
+                                <a href="products/kas.html" class="text-sm text-blue-600 hover:underline">kas.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/kas.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">7</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    mandala
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Akyaka</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">20</td>
+                            <td class="px-6 py-4">
+                                <a href="products/akyaka.html" class="text-sm text-blue-600 hover:underline">akyaka.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/akyaka.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">8</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    mikrokoton
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Alacati</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">17</td>
+                            <td class="px-6 py-4">
+                                <a href="products/alacati.html" class="text-sm text-blue-600 hover:underline">alacati.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/alacati.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">9</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    netherland
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Asos</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">21</td>
+                            <td class="px-6 py-4">
+                                <a href="products/asos.html" class="text-sm text-blue-600 hover:underline">asos.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/asos.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-pearl/50 transition-colors">
+                            <td class="px-6 py-4 text-sm text-slate">10</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
+                                    bugra
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-navy font-medium">Yalikavak</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate">20</td>
+                            <td class="px-6 py-4">
+                                <a href="products/yalikavak.html" class="text-sm text-blue-600 hover:underline">yalikavak.html</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="products/yalikavak.html" target="_blank" class="text-slate hover:text-navy">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
+            <h3 class="text-lg font-semibold text-navy mb-4">
+                <i class="fas fa-clipboard-list mr-2 text-gold"></i>Quick Reference for Supplier Orders
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-medium text-navy mb-3">Order Format Example:</h4>
+                    <div class="bg-pearl p-4 rounded-lg font-mono text-sm">
+                        <p class="text-slate mb-2">Supplier: <span class="text-navy font-semibold">Nazmi Textile</span></p>
+                        <p class="text-slate mb-2">Product: <span class="text-gold font-semibold">stone</span> (SKU)</p>
+                        <p class="text-slate mb-2">Quantity: <span class="text-navy">100 pcs</span></p>
+                        <p class="text-slate">Colors: <span class="text-navy">Assorted</span></p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-medium text-navy mb-3">Notes:</h4>
+                    <ul class="space-y-2 text-sm text-slate">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-success mt-1"></i>
+                            <span>Always use <strong class="text-gold">SKU names</strong> when ordering from Nazmi</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-success mt-1"></i>
+                            <span><strong class="text-navy">Display names</strong> are for website and customer catalog only</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check text-success mt-1"></i>
+                            <span>Minimum order: 100 pieces per color per SKU</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+                            <span>Contact Nazmi directly for custom color requests</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Folder Structure Reference -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
+            <h3 class="text-lg font-semibold text-navy mb-4">
+                <i class="fas fa-folder-tree mr-2 text-gold"></i>Image Folder Structure
+            </h3>
+            <div class="bg-pearl p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                <pre class="text-slate">
+Nazmi textile/
+├── index.html
+├── admin.html (this page)
+├── products/
+│   ├── foca.html      (stone)
+│   ├── bodrum.html    (sultan)
+│   ├── cesme.html     (sultantrend)
+│   ├── datca.html     (vegas)
+│   ├── fethiye.html   (zebra)
+│   ├── kas.html       (multicolor)
+│   ├── akyaka.html    (mandala)
+│   ├── alacati.html   (mikrokoton)
+│   ├── asos.html      (netherland)
+│   └── yalikavak.html (bugra)
+└── Nazmi/
+    ├── sku#stone display#foca/
+    ├── sku#sultan display#bodrum/
+    ├── sku#sultantrend display#cesme/
+    ├── sku#vegas display#datca/
+    ├── sku#zebra display#fethiye/
+    ├── sku#multicolor display#kas/
+    ├── sku#mandala display#akyaka/
+    ├── sku#mikrokoton display#alacati/
+    ├── sku#netherland display#asos/
+    └── sku#bugra display#yalikavak/
+                </pre>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white/60 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>Cotton Textile Admin Panel &bull; For internal use only</p>
+        </div>
+    </footer>
+
+</body>
+</html>

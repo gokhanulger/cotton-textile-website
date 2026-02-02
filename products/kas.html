@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kas Peshtemal | Cotton Textile</title>
+
+    <!-- SKU: multicolor (Manufacturer Code) | Display: kas -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#0A1628',
+                        'navy-light': '#1A2744',
+                        'steel': '#374151',
+                        'slate': '#64748B',
+                        'silver': '#94A3B8',
+                        'pearl': '#F8FAFC',
+                        'gold': '#B8860B',
+                        'gold-light': '#D4A843',
+                        'success': '#059669',
+                    },
+                    fontFamily: {
+                        'display': ['Libre Baskerville', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10, 22, 40, 0.15); }
+        .header-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .gallery-main { aspect-ratio: 1/1; }
+        .gallery-thumb { aspect-ratio: 1/1; cursor: pointer; opacity: 0.6; transition: opacity 0.3s; }
+        .gallery-thumb:hover, .gallery-thumb.active { opacity: 1; }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; }
+        .lightbox.active { display: flex; }
+        .page-loader { position: fixed; inset: 0; background: #0A1628; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s ease; }
+        .page-loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-images { display: flex; gap: 8px; margin-bottom: 24px; }
+        .loader-images img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; opacity: 0.3; animation: loaderPulse 1.5s ease-in-out infinite; }
+        .loader-images img:nth-child(1) { animation-delay: 0s; } .loader-images img:nth-child(2) { animation-delay: 0.2s; } .loader-images img:nth-child(3) { animation-delay: 0.4s; } .loader-images img:nth-child(4) { animation-delay: 0.6s; } .loader-images img:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes loaderPulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
+        .loader-text { color: #B8860B; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+    </style>
+</head>
+<body class="font-body text-steel bg-white">
+    <div class="page-loader" id="pageLoader"><div class="loader-images"><img src="../img-deploy/Nazmi-AKyuz_RIO__SultansGem_(382).jpg" alt=""><img src="../img-deploy/Nazmi-AKyuz_aegean__SultansGem_(462).jpg" alt=""><img src="../img-deploy/Nazmi-AKyuz_colorful__SultansGem_(342).jpg" alt=""><img src="../img-deploy/Nazmi-AKyuz_SPRING__SultansGem_(362).jpg" alt=""><img src="../img-deploy/Nazmi-AKyuz_palm__SultansGem_(326).jpg" alt=""></div><div class="loader-text">Cotton Textile</div></div>
+
+    <header class="sticky top-0 z-50 bg-white transition-all duration-300 border-b border-gray-100" id="header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="../index.html" class="flex items-center gap-4">
+                    <div class="w-12 h-12 border-2 border-navy flex items-center justify-center">
+                        <span class="font-display text-navy text-xl font-bold">CT</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-display text-xl text-navy block leading-tight">Cotton Textile</span>
+                        <span class="text-[11px] text-slate tracking-[0.15em] uppercase">Premium Manufacturing</span>
+                    </div>
+                </a>
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="../index.html" class="text-sm font-medium text-steel hover:text-navy">Home</a></li>
+                    <li class="relative group">
+                        <button class="text-sm font-medium text-navy flex items-center gap-1">Products <i class="fas fa-chevron-down text-xs"></i></button>
+                        <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                            <div class="bg-white border border-gray-200 shadow-xl min-w-[200px]">
+                                <a href="../peshtemals.html" class="block px-5 py-3 text-sm text-navy font-medium bg-pearl border-b border-gray-100"><i class="fas fa-water text-gold mr-2"></i>Peshtemals</a>
+                                <a href="../towels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl border-b border-gray-100"><i class="fas fa-spa text-gold mr-2"></i>Towels</a>
+                                <a href="../robes.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl border-b border-gray-100"><i class="fas fa-tshirt text-gold mr-2"></i>Robes</a>
+                                <a href="../beaches-hotels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl"><i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../index.html#about" class="text-sm font-medium text-steel hover:text-navy">About Us</a></li>
+                    <li><a href="../index.html#contact" class="text-sm font-medium text-steel hover:text-navy">Contact</a></li>
+                </ul>
+                <a href="https://wa.me/905XXXXXXXXXX?text=I'm%20interested%20in%20Kas%20Peshtemal" target="_blank"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-white text-sm font-medium hover:bg-navy-light transition-colors">
+                    <i class="fab fa-whatsapp"></i>Get Quote
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="bg-pearl border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center gap-2 text-sm">
+                <a href="../index.html" class="text-slate hover:text-navy">Home</a>
+                <i class="fas fa-chevron-right text-xs text-silver"></i>
+                <a href="../index.html#products" class="text-slate hover:text-navy">Products</a>
+                <i class="fas fa-chevron-right text-xs text-silver"></i>
+                <span class="text-navy font-medium">Kas</span>
+            </nav>
+        </div>
+    </div>
+
+    <section class="py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+                <div>
+                    <div class="gallery-main bg-pearl mb-4 overflow-hidden">
+                        <img id="mainImage" src="../img-deploy/Nazmi_sku#multicolor-display#kas__SultansGem_(442).jpg"
+                            alt="Kas Peshtemal"
+                            class="w-full h-full object-cover cursor-zoom-in"
+                            onclick="openLightbox(0)">
+                    </div>
+                    <div class="grid grid-cols-6 gap-2" id="thumbnails"></div>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="px-3 py-1 bg-navy text-white text-xs font-medium">PESHTEMAL</span>
+                        <span class="px-3 py-1 bg-gold/20 text-gold text-xs font-medium">Premium Collection</span>
+                    </div>
+
+                    <h1 class="font-display text-3xl md:text-4xl text-navy mb-4">Kas Peshtemal</h1>
+
+                    <p class="text-lg text-slate mb-8 leading-relaxed">
+                        Traditional hand-woven Turkish peshtemal from our premium collection.
+                        Perfect for luxury hotels, spas, and premium retail. Made from 100% organic Aegean cotton.
+                    </p>
+
+                    <div class="border-t border-b border-gray-200 py-6 mb-8">
+                        <h3 class="font-semibold text-navy mb-4">Specifications</h3>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate">Material</span>
+                                <span class="text-navy font-medium">100% Organic Cotton</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate">Size</span>
+                                <span class="text-navy font-medium">180 x 90 cm</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate">Weight</span>
+                                <span class="text-navy font-medium">350 gsm</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate">Origin</span>
+                                <span class="text-navy font-medium">Denizli, Turkey</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-navy mb-4">Features</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Hand-woven with traditional techniques</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Oeko-Tex Standard 100 Certified</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Quick-dry and lightweight</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Available in multiple colors</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Custom branding available</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-pearl p-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-box text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-navy mb-1">Minimum Order Quantity</h4>
+                                <p class="text-slate text-sm">MOQ starts from 100 pieces per color. Contact us for wholesale pricing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/905XXXXXXXXXX?text=I'm%20interested%20in%20Kas%20Peshtemal.%20Please%20send%20me%20wholesale%20pricing." target="_blank"
+                            class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-success text-white font-semibold hover:bg-success/90 transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>WhatsApp for Quote
+                        </a>
+                        <a href="../index.html#contact"
+                            class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-navy text-navy font-semibold hover:bg-navy hover:text-white transition-colors">
+                            <i class="fas fa-envelope"></i>Email Inquiry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-pearl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-display text-2xl text-navy mb-8">Other Peshtemal Collections</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                                <a href="foca.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Foca</h3>
+                </a>
+                <a href="bodrum.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Bodrum</h3>
+                </a>
+                <a href="cesme.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Cesme</h3>
+                </a>
+                <a href="datca.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Datca</h3>
+                </a>
+                <a href="fethiye.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+                            <i class="fas fa-image text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Fethiye</h3>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy-light text-white/80 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 border-2 border-white/30 flex items-center justify-center">
+                            <span class="font-display text-white text-xl font-bold">CT</span>
+                        </div>
+                        <div>
+                            <span class="font-display text-xl text-white block">Cotton Textile</span>
+                            <span class="text-xs text-white/40 tracking-wider uppercase">Premium Manufacturing</span>
+                        </div>
+                    </div>
+                    <p class="text-white/60 max-w-md mb-6">Leading Turkish textile manufacturer specializing in premium peshtemals, towels, and bathrobes for B2B clients worldwide.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Products</h4>
+                    <ul class="space-y-3">
+                        <li><a href="../peshtemals.html" class="text-white/60 hover:text-gold transition-colors">Peshtemals</a></li>
+                        <li><a href="../towels.html" class="text-white/60 hover:text-gold transition-colors">Towels</a></li>
+                        <li><a href="../robes.html" class="text-white/60 hover:text-gold transition-colors">Robes</a></li>
+                        <li><a href="../beaches-hotels.html" class="text-white/60 hover:text-gold transition-colors">Beaches & Hotels</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="../index.html" class="text-white/60 hover:text-gold transition-colors">Home</a></li>
+                        <li><a href="../index.html#about" class="text-white/60 hover:text-gold transition-colors">About Us</a></li>
+                        <li><a href="../index.html#certifications" class="text-white/60 hover:text-gold transition-colors">Certifications</a></li>
+                        <li><a href="../index.html#contact" class="text-white/60 hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-6">Contact</h4>
+                    <ul class="space-y-3 text-white/60 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-gold mt-1"></i>Denizli, Turkey</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-phone-alt text-gold"></i>+90 (258) 123 45 67</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-envelope text-gold"></i>sales@cottontextile.com</li>
+                        <li class="pt-2"><a href="https://wa.me/905XXXXXXXXXX" target="_blank" class="inline-flex items-center gap-2 text-success hover:text-success/80 transition-colors"><i class="fab fa-whatsapp"></i>WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">© 2024 Cotton Textile. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-white/40">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox items-center justify-center">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-gold"><i class="fas fa-times"></i></button>
+        <button onclick="prevImage()" class="absolute left-6 text-white text-3xl hover:text-gold"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="nextImage()" class="absolute right-6 text-white text-3xl hover:text-gold"><i class="fas fa-chevron-right"></i></button>
+        <img id="lightboxImage" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain">
+    </div>
+
+    <a href="https://wa.me/905XXXXXXXXXX?text=I'm%20interested%20in%20Kas%20Peshtemal" target="_blank"
+        class="fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 rounded-full">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        const images = ['../Nazmi/sku%23multicolor%20display%23kas/SultansGem%20%28442%29.jpg'];
+        let currentIndex = 0;
+
+        const thumbnailsContainer = document.getElementById('thumbnails');
+        images.slice(0, 12).forEach((img, index) => {
+            const thumb = document.createElement('div');
+            thumb.className = `gallery-thumb overflow-hidden ${index === 0 ? 'active ring-2 ring-navy' : ''}`;
+            thumb.innerHTML = `<img src="${img}" alt="Thumbnail ${index + 1}" class="w-full h-full object-cover">`;
+            thumb.onclick = () => selectImage(index);
+            thumbnailsContainer.appendChild(thumb);
+        });
+
+        function selectImage(index) {
+            currentIndex = index;
+            document.getElementById('mainImage').src = images[index];
+            document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+                thumb.classList.toggle('ring-2', i === index);
+                thumb.classList.toggle('ring-navy', i === index);
+            });
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightboxImage').src = images[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('lightboxImage').src = images[currentIndex];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            document.getElementById('lightboxImage').src = images[currentIndex];
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('header-scrolled', window.scrollY > 50);
+        });
+        const pageLoader = document.getElementById('pageLoader');
+        window.addEventListener('load', () => { setTimeout(() => { pageLoader.classList.add('hidden'); }, 800); });
+        document.querySelectorAll('a[href]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel')) {
+                    e.preventDefault(); pageLoader.classList.remove('hidden');
+                    setTimeout(() => { window.location.href = href; }, 400);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
