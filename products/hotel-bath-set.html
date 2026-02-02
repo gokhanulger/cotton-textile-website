@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Bath Set | Cotton Textile</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#0A1628',
+                        'navy-light': '#1A2744',
+                        'steel': '#374151',
+                        'slate': '#64748B',
+                        'silver': '#94A3B8',
+                        'pearl': '#F8FAFC',
+                        'gold': '#B8860B',
+                        'gold-light': '#D4A843',
+                        'success': '#059669',
+                    },
+                    fontFamily: {
+                        'display': ['Libre Baskerville', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10, 22, 40, 0.15); }
+        .header-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .gallery-main { aspect-ratio: 1/1; }
+        .gallery-thumb { aspect-ratio: 1/1; cursor: pointer; opacity: 0.6; transition: opacity 0.3s; }
+        .gallery-thumb:hover, .gallery-thumb.active { opacity: 1; }
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; }
+        .lightbox.active { display: flex; }
+        .page-loader { position: fixed; inset: 0; background: #0A1628; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s ease; }
+        .page-loader.hidden { opacity: 0; visibility: hidden; }
+    </style>
+</head>
+<body class="font-body text-steel bg-white">
+    <div class="page-loader" id="pageLoader"><div class="text-gold text-sm tracking-widest uppercase">Cotton Textile</div></div>
+
+    <header class="sticky top-0 z-50 bg-white transition-all duration-300 border-b border-gray-100" id="header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="../index.html" class="flex items-center gap-4">
+                    <div class="w-12 h-12 border-2 border-navy flex items-center justify-center">
+                        <span class="font-display text-navy text-xl font-bold">CT</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-display text-xl text-navy block leading-tight">Cotton Textile</span>
+                        <span class="text-[11px] text-slate tracking-[0.15em] uppercase">Premium Manufacturing</span>
+                    </div>
+                </a>
+
+                <ul class="hidden lg:flex items-center gap-8">
+                    <li><a href="../index.html" class="text-sm font-medium text-steel hover:text-navy">Home</a></li>
+                    <li class="relative group">
+                        <button class="text-sm font-medium text-navy flex items-center gap-1">Products <i class="fas fa-chevron-down text-xs"></i></button>
+                        <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div class="bg-white border border-gray-200 shadow-xl min-w-[200px]">
+                                <a href="../peshtemals.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy border-b border-gray-100"><i class="fas fa-water text-gold mr-2"></i>Peshtemals</a>
+                                <a href="../towels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy border-b border-gray-100"><i class="fas fa-spa text-gold mr-2"></i>Towels</a>
+                                <a href="../robes.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy border-b border-gray-100"><i class="fas fa-tshirt text-gold mr-2"></i>Robes</a>
+                                <a href="../beaches-hotels.html" class="block px-5 py-3 text-sm text-navy font-medium bg-pearl"><i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../index.html#about" class="text-sm font-medium text-steel hover:text-navy">About Us</a></li>
+                    <li><a href="../index.html#contact" class="text-sm font-medium text-steel hover:text-navy">Contact</a></li>
+                </ul>
+
+                <a href="https://wa.me/905354124910?text=I'm%20interested%20in%20Hotel%20Bath%20Set" target="_blank"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-white text-sm font-medium hover:bg-navy-light transition-colors">
+                    <i class="fab fa-whatsapp"></i>Get Quote
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="bg-pearl border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center gap-2 text-sm">
+                <a href="../index.html" class="text-slate hover:text-navy">Home</a>
+                <i class="fas fa-chevron-right text-xs text-silver"></i>
+                <a href="../beaches-hotels.html" class="text-slate hover:text-navy">Beaches & Hotels</a>
+                <i class="fas fa-chevron-right text-xs text-silver"></i>
+                <span class="text-navy font-medium">Hotel Bath Set</span>
+            </nav>
+        </div>
+    </div>
+
+    <section class="py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+                <div>
+                    <div class="gallery-main bg-pearl mb-4 overflow-hidden">
+                        <img id="mainImage" src="../img-hotel/81XKpNOykKL._AC_SL1500_.jpg"
+                            alt="Hotel Bath Set"
+                            class="w-full h-full object-cover cursor-zoom-in"
+                            onclick="openLightbox(0)">
+                    </div>
+                    <div class="grid grid-cols-6 gap-2" id="thumbnails"></div>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="px-3 py-1 bg-navy text-white text-xs font-medium">HOTEL COLLECTION</span>
+                        <span class="px-3 py-1 bg-gold/20 text-gold text-xs font-medium">Best Seller</span>
+                    </div>
+
+                    <h1 class="font-display text-3xl md:text-4xl text-navy mb-4">Hotel Bath Set</h1>
+
+                    <p class="text-lg text-slate mb-8 leading-relaxed">
+                        Premium 6-piece bath towel set crafted from 100% Turkish cotton with 600 GSM weight.
+                        Designed for 5-star hotels and luxury accommodations. Superior absorbency, exceptional softness,
+                        and lasting durability after hundreds of industrial washes.
+                    </p>
+
+                    <div class="border-t border-b border-gray-200 py-6 mb-8">
+                        <h3 class="font-semibold text-navy mb-4">Specifications</h3>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="flex justify-between"><span class="text-slate">Material</span><span class="text-navy font-medium">100% Turkish Cotton</span></div>
+                            <div class="flex justify-between"><span class="text-slate">Weight</span><span class="text-navy font-medium">600 GSM</span></div>
+                            <div class="flex justify-between"><span class="text-slate">Set Includes</span><span class="text-navy font-medium">6 Pieces</span></div>
+                            <div class="flex justify-between"><span class="text-slate">Origin</span><span class="text-navy font-medium">Denizli, Turkey</span></div>
+                            <div class="flex justify-between"><span class="text-slate">Bath Towel</span><span class="text-navy font-medium">70 x 140 cm (x2)</span></div>
+                            <div class="flex justify-between"><span class="text-slate">Hand Towel</span><span class="text-navy font-medium">50 x 100 cm (x2)</span></div>
+                            <div class="flex justify-between"><span class="text-slate">Face Towel</span><span class="text-navy font-medium">30 x 50 cm (x2)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-navy mb-4">Features</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Premium long-staple Turkish cotton</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Oeko-Tex Standard 100 Certified</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Industrial wash resistant (500+ washes)</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Double-stitched hems for durability</span></li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-success"></i><span>Custom logo embroidery available</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-pearl p-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy/10 flex items-center justify-center shrink-0"><i class="fas fa-box text-navy"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-navy mb-1">Minimum Order Quantity</h4>
+                                <p class="text-slate text-sm">MOQ starts from 100 sets. Contact us for wholesale pricing and custom branding options.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/905354124910?text=I'm%20interested%20in%20Hotel%20Bath%20Set.%20Please%20send%20wholesale%20pricing." target="_blank"
+                            class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 bg-success text-white font-semibold hover:bg-success/90 transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>WhatsApp for Quote
+                        </a>
+                        <a href="../index.html#contact"
+                            class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-navy text-navy font-semibold hover:bg-navy hover:text-white transition-colors">
+                            <i class="fas fa-envelope"></i>Email Inquiry
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-pearl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-display text-2xl text-navy mb-8">Other Hotel Products</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="premium-bath-towels.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <img src="../img-hotel/81AGfFUDVaL._AC_SL1500_.jpg" alt="Premium Bath Towels" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Premium Bath Towels</h3>
+                </a>
+                <a href="oversized-bath-sheet.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <img src="../img-hotel/814yAyE5xyL._AC_SL1500_.jpg" alt="Oversized Bath Sheet" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Oversized Bath Sheet</h3>
+                </a>
+                <a href="luxury-bundle.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <img src="../img-hotel/81UDNz76z7L._AC_SL1500_.jpg" alt="Luxury Bundle" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Luxury Bundle</h3>
+                </a>
+                <a href="complete-hotel-set.html" class="group bg-white p-4 hover-lift">
+                    <div class="aspect-square bg-pearl mb-3 overflow-hidden">
+                        <img src="../img-hotel/71WBnpuOtZL._AC_SL1500_.jpg" alt="Complete Hotel Set" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-medium text-navy text-sm">Complete Hotel Set</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy-light text-white/80 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 border-2 border-white/30 flex items-center justify-center"><span class="font-display text-white text-xl font-bold">CT</span></div>
+                        <span class="font-display text-xl text-white">Cotton Textile</span>
+                    </div>
+                    <p class="text-white/60 text-sm">Premium Turkish textile manufacturer for B2B clients worldwide.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Products</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../peshtemals.html" class="text-white/60 hover:text-gold">Peshtemals</a></li>
+                        <li><a href="../towels.html" class="text-white/60 hover:text-gold">Towels</a></li>
+                        <li><a href="../robes.html" class="text-white/60 hover:text-gold">Robes</a></li>
+                        <li><a href="../beaches-hotels.html" class="text-white/60 hover:text-gold">Beaches & Hotels</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../index.html" class="text-white/60 hover:text-gold">Home</a></li>
+                        <li><a href="../index.html#about" class="text-white/60 hover:text-gold">About Us</a></li>
+                        <li><a href="../index.html#contact" class="text-white/60 hover:text-gold">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-white/60">
+                        <li><i class="fas fa-map-marker-alt text-gold mr-2"></i>Denizli, Turkey</li>
+                        <li><i class="fas fa-phone-alt text-gold mr-2"></i>+90 535 412 49 10</li>
+                        <li><i class="fas fa-envelope text-gold mr-2"></i>sales@cottontextile.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center text-white/40 text-sm">© 2024 Cotton Textile. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox items-center justify-center">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-gold"><i class="fas fa-times"></i></button>
+        <button onclick="prevImage()" class="absolute left-6 text-white text-3xl hover:text-gold"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="nextImage()" class="absolute right-6 text-white text-3xl hover:text-gold"><i class="fas fa-chevron-right"></i></button>
+        <img id="lightboxImage" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain">
+    </div>
+
+    <a href="https://wa.me/905354124910?text=I'm%20interested%20in%20Hotel%20Bath%20Set" target="_blank"
+        class="fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 rounded-full">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        const images = [
+            '../img-hotel/81XKpNOykKL._AC_SL1500_.jpg',
+            '../img-hotel/81AGfFUDVaL._AC_SL1500_.jpg',
+            '../img-hotel/814yAyE5xyL._AC_SL1500_.jpg',
+            '../img-hotel/81UDNz76z7L._AC_SL1500_.jpg',
+            '../img-hotel/817XZDYCYBL._AC_SL1500_.jpg',
+            '../img-hotel/81nPqQrAZUL._AC_SL1500_.jpg'
+        ];
+        let currentIndex = 0;
+
+        const thumbnailsContainer = document.getElementById('thumbnails');
+        images.forEach((img, index) => {
+            const thumb = document.createElement('div');
+            thumb.className = `gallery-thumb overflow-hidden ${index === 0 ? 'active ring-2 ring-navy' : ''}`;
+            thumb.innerHTML = `<img src="${img}" alt="Thumbnail ${index + 1}" class="w-full h-full object-cover">`;
+            thumb.onclick = () => selectImage(index);
+            thumbnailsContainer.appendChild(thumb);
+        });
+
+        function selectImage(index) {
+            currentIndex = index;
+            document.getElementById('mainImage').src = images[index];
+            document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+                thumb.classList.toggle('ring-2', i === index);
+                thumb.classList.toggle('ring-navy', i === index);
+            });
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightboxImage').src = images[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('lightboxImage').src = images[currentIndex];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            document.getElementById('lightboxImage').src = images[currentIndex];
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('header-scrolled', window.scrollY > 50);
+        });
+
+        const pageLoader = document.getElementById('pageLoader');
+        window.addEventListener('load', () => { setTimeout(() => { pageLoader.classList.add('hidden'); }, 500); });
+    </script>
+</body>
+</html>
