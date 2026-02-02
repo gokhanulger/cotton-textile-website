@@ -28,7 +28,7 @@
     </style>
 </head>
 <body class="font-body text-steel bg-white">
-    <div class="page-loader" id="pageLoader"><div class="loader-images"><img src="../img-compressed/Nazmi-AKyuz_RIO__SultansGem_(382).jpg" alt=""><img src="../img-compressed/Nazmi-AKyuz_aegean__SultansGem_(462).jpg" alt=""><img src="../img-compressed/Nazmi-AKyuz_colorful__SultansGem_(342).jpg" alt=""><img src="../img-compressed/Nazmi-AKyuz_SPRING__SultansGem_(362).jpg" alt=""><img src="../img-compressed/Nazmi-AKyuz_palm__SultansGem_(326).jpg" alt=""></div><div class="loader-text">Cotton Textile</div></div>
+    <div class="page-loader" id="pageLoader"><div class="loader-images"><img src="../img-gallery/58d11d_Nazmi-AKyuz_RIO__SultansGem_(382).jpg" alt=""><img src="../img-gallery/5e97ae_Nazmi-AKyuz_aegean__SultansGem_(462).jpg" alt=""><img src="../img-gallery/9864ae_Nazmi-AKyuz_colorful__SultansGem_(342).jpg" alt=""><img src="../img-gallery/6b1968_Nazmi-AKyuz_SPRING__SultansGem_(362).jpg" alt=""><img src="../img-gallery/cfe886_Nazmi-AKyuz_palm__SultansGem_(326).jpg" alt=""></div><div class="loader-text">Cotton Textile</div></div>
     <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -61,7 +61,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
                 <div>
-                    <div class="aspect-square bg-pearl mb-4 overflow-hidden"><img id="mainImage" src="../img-compressed/Nazmi-AKyuz_bambu__IMG_0089_copy.jpg" alt="Bambu Peshtemal" class="w-full h-full object-cover cursor-zoom-in" onclick="openLightbox(0)"></div>
+                    <div class="aspect-square bg-pearl mb-4 overflow-hidden"><img id="mainImage" src="../img-gallery/c5624a_Nazmi-AKyuz_bambu__IMG_0089_copy.jpg" alt="Bambu Peshtemal" class="w-full h-full object-cover cursor-zoom-in" onclick="openLightbox(0)"></div>
                     <div class="grid grid-cols-6 gap-2" id="thumbnails"></div>
                 </div>
                 <div>
@@ -158,7 +158,7 @@
     <div id="lightbox" class="lightbox items-center justify-center"><button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-gold"><i class="fas fa-times"></i></button><button onclick="prevImage()" class="absolute left-6 text-white text-3xl hover:text-gold"><i class="fas fa-chevron-left"></i></button><button onclick="nextImage()" class="absolute right-6 text-white text-3xl hover:text-gold"><i class="fas fa-chevron-right"></i></button><img id="lightboxImage" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain"></div>
     <a href="https://wa.me/905354124910" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 rounded-full"><i class="fab fa-whatsapp text-2xl"></i></a>
     <script>
-        const images = ['../Nazmi%20AKyuz/bambu/IMG_0089%20copy.jpg','../Nazmi%20AKyuz/bambu/IMG_0090%20copy.jpg','../Nazmi%20AKyuz/bambu/IMG_0091.jpg','../Nazmi%20AKyuz/bambu/IMG_0092.jpg','../Nazmi%20AKyuz/bambu/IMG_0093.jpg','../Nazmi%20AKyuz/bambu/IMG_0094.jpg'];
+        const images = ['../img-gallery/1c9579_IMG_0089_copy.jpg','../img-gallery/458e02_IMG_0090_copy.jpg','../img-gallery/65e332_IMG_0091.jpg','../img-gallery/f3fdd2_IMG_0092.jpg','../img-gallery/449717_IMG_0093.jpg','../img-gallery/54338f_IMG_0094.jpg'];
         let currentIndex = 0;
         const thumbnailsContainer = document.getElementById('thumbnails');
         images.forEach((img, index) => { const thumb = document.createElement('div'); thumb.className = `gallery-thumb overflow-hidden ${index === 0 ? 'active ring-2 ring-navy' : ''}`; thumb.innerHTML = `<img src="${img}" alt="Thumbnail" class="w-full h-full object-cover">`; thumb.onclick = () => selectImage(index); thumbnailsContainer.appendChild(thumb); });
