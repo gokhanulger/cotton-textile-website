@@ -123,11 +123,13 @@
     <style>
         html { scroll-behavior: smooth; }
 
-        /* Subtle Animations */
+        /* ========== ENHANCED ANIMATIONS ========== */
+
+        /* Fade Up Animation */
         .fade-up {
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeUp 0.6s ease forwards;
+            animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
@@ -137,13 +139,61 @@
         .delay-3 { animation-delay: 0.3s; }
         .delay-4 { animation-delay: 0.4s; }
 
-        /* Professional Hover */
+        /* Staggered Reveal Animation */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-item:nth-child(1) { transition-delay: 0s; }
+        .reveal-item:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-item:nth-child(3) { transition-delay: 0.15s; }
+        .reveal-item:nth-child(4) { transition-delay: 0.2s; }
+        .reveal-item:nth-child(5) { transition-delay: 0.25s; }
+        .reveal-item:nth-child(6) { transition-delay: 0.3s; }
+        .reveal-item:nth-child(7) { transition-delay: 0.35s; }
+        .reveal-item:nth-child(8) { transition-delay: 0.4s; }
+        .reveal-item:nth-child(9) { transition-delay: 0.45s; }
+        .reveal-item:nth-child(10) { transition-delay: 0.5s; }
+
+        /* Professional Hover with 3D Tilt */
         .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
         }
         .hover-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(10, 22, 40, 0.15);
+            transform: translateY(-8px) rotateX(2deg);
+            box-shadow: 0 25px 50px rgba(10, 22, 40, 0.2);
+        }
+
+        /* Card 3D Tilt Effect */
+        .card-3d {
+            perspective: 1000px;
+        }
+        .card-3d-inner {
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .card-3d:hover .card-3d-inner {
+            transform: rotateY(var(--rotateY, 0deg)) rotateX(var(--rotateX, 0deg));
+        }
+        .card-3d-inner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .card-3d:hover .card-3d-inner::before {
+            opacity: 1;
         }
 
         /* Underline Animation */
@@ -157,27 +207,40 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #B8860B;
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, #B8860B, #D4A843);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .link-underline:hover::after {
             width: 100%;
         }
 
-        /* Mobile Menu */
+        /* Mobile Menu with Stagger */
         .mobile-menu {
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .mobile-menu.active {
             transform: translateX(0);
+        }
+        .mobile-menu.active li {
+            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+        .mobile-menu.active li:nth-child(1) { animation-delay: 0.1s; }
+        .mobile-menu.active li:nth-child(2) { animation-delay: 0.15s; }
+        .mobile-menu.active li:nth-child(3) { animation-delay: 0.2s; }
+        .mobile-menu.active li:nth-child(4) { animation-delay: 0.25s; }
+        .mobile-menu.active li:nth-child(5) { animation-delay: 0.3s; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         /* Section Reveal */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -191,7 +254,245 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* Page Loader */
+        /* ========== HERO ENHANCEMENTS ========== */
+
+        /* Animated Gradient Background */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0A1628 0%, #1A2744 25%, #0A1628 50%, #1A2744 75%, #0A1628 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Fabric Texture Overlay */
+        .fabric-texture {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M0 30h60M30 0v60' stroke='%23B8860B' stroke-width='0.5'/%3E%3C/svg%3E");
+            animation: weaveMove 20s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes weaveMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Typing Cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #B8860B;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #B8860B, #D4A843);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Counter Animation */
+        .stat-counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ========== TIMELINE STYLES ========== */
+
+        .timeline {
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #B8860B 10%, #B8860B 90%, transparent);
+        }
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: #B8860B;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.2);
+        }
+        .timeline-item.active .timeline-dot {
+            transform: translateX(-50%) scale(1);
+        }
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        /* ========== PROCESS FLOW ========== */
+
+        .process-step {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .process-step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .process-icon {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .process-step.active .process-icon {
+            animation: iconPop 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes iconPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .process-connector {
+            height: 2px;
+            background: linear-gradient(90deg, #B8860B, #D4A843);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .process-step.active + .process-connector,
+        .process-connector.active {
+            transform: scaleX(1);
+        }
+
+        /* ========== SCROLL PROGRESS ========== */
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #B8860B, #D4A843);
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s linear;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0A1628;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 49;
+            border: none;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: #1A2744;
+            transform: translateY(-3px);
+        }
+        .back-to-top svg {
+            position: absolute;
+            inset: 0;
+            transform: rotate(-90deg);
+        }
+        .back-to-top circle {
+            fill: none;
+            stroke: #B8860B;
+            stroke-width: 3;
+            stroke-dasharray: 141.37;
+            stroke-dashoffset: 141.37;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* ========== BUTTON EFFECTS ========== */
+
+        .btn-magnetic {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-magnetic::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #D4A843, #B8860B);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-magnetic:hover::before {
+            transform: translateX(0);
+        }
+        .btn-magnetic span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* WhatsApp Pulse */
+        .whatsapp-pulse {
+            animation: whatsappPulse 2s infinite;
+        }
+        @keyframes whatsappPulse {
+            0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(5, 150, 105, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+        }
+
+        /* ========== PAGE LOADER ========== */
+
         .page-loader {
             position: fixed;
             inset: 0;
@@ -234,6 +535,39 @@
             font-size: 14px;
             letter-spacing: 3px;
             text-transform: uppercase;
+        }
+
+        /* ========== PARALLAX ========== */
+
+        .parallax-bg {
+            position: absolute;
+            inset: -20%;
+            background-size: cover;
+            background-position: center;
+            will-change: transform;
+        }
+
+        /* ========== ACCESSIBILITY ========== */
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .scroll-progress { display: none; }
+        }
+
+        /* Image Ken Burns Effect */
+        .image-zoom {
+            overflow: hidden;
+        }
+        .image-zoom img {
+            transition: transform 8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.1);
+        }
+        .image-zoom.in-view img {
+            transform: scale(1);
         }
     </style>
 </head>
@@ -385,14 +719,20 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-[90vh] flex items-center bg-navy overflow-hidden">
-        <!-- Background -->
+    <section id="home" class="relative min-h-[90vh] flex items-center hero-gradient overflow-hidden">
+        <!-- Background Image -->
         <div class="absolute inset-0">
             <img src="img-gallery/9864ae_Nazmi-AKyuz_colorful__SultansGem_(342).jpg"
                 alt="Textile Manufacturing"
-                class="w-full h-full object-cover opacity-30">
+                class="w-full h-full object-cover opacity-20">
             <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/95 to-navy/80"></div>
         </div>
+
+        <!-- Fabric Texture Overlay -->
+        <div class="fabric-texture"></div>
+
+        <!-- Gold Accent Gradient -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_70%,rgba(184,134,11,0.12)_0%,transparent_50%)] pointer-events-none"></div>
 
         <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -401,12 +741,13 @@
                 <div>
                     <div class="flex items-center gap-3 mb-6 fade-up">
                         <div class="w-12 h-px bg-gold"></div>
-                        <span class="text-gold text-sm font-medium tracking-wider uppercase">Established 1998</span>
+                        <span class="text-gold text-sm font-medium tracking-wider uppercase">Established 1998 • Denizli, Turkey</span>
                     </div>
 
                     <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6 fade-up delay-1">
                         Premium Turkish
-                        <span class="block text-gold">Textile Manufacturing</span>
+                        <span class="block text-gradient" id="heroTyping">Textile Manufacturing</span>
+                        <span class="typing-cursor"></span>
                     </h1>
 
                     <p class="text-lg text-white/70 max-w-lg mb-8 leading-relaxed fade-up delay-2">
@@ -415,40 +756,50 @@
                     </p>
 
                     <div class="flex flex-wrap gap-4 mb-12 fade-up delay-3">
-                        <a href="#products" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-semibold hover:bg-gold-light transition-colors">
-                            View Catalog
-                            <i class="fas fa-arrow-right text-sm"></i>
+                        <a href="#products" class="btn-magnetic inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-semibold hover:bg-gold-light transition-colors">
+                            <span class="flex items-center gap-2">
+                                View Catalog
+                                <i class="fas fa-arrow-right text-sm"></i>
+                            </span>
                         </a>
-                        <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-medium hover:bg-white/10 transition-colors">
+                        <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-medium hover:bg-white/10 hover:border-white/50 transition-all duration-300">
                             Contact Sales
                         </a>
                     </div>
 
-                    <!-- Stats -->
+                    <!-- Animated Stats -->
                     <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/10 fade-up delay-4">
                         <div>
-                            <p class="font-display text-3xl text-gold mb-1">25+</p>
+                            <p class="font-display text-3xl md:text-4xl text-gold mb-1">
+                                <span class="stat-counter" data-target="25">0</span>+
+                            </p>
                             <p class="text-white/50 text-sm">Years Experience</p>
                         </div>
                         <div>
-                            <p class="font-display text-3xl text-gold mb-1">50+</p>
+                            <p class="font-display text-3xl md:text-4xl text-gold mb-1">
+                                <span class="stat-counter" data-target="50">0</span>+
+                            </p>
                             <p class="text-white/50 text-sm">Export Countries</p>
                         </div>
                         <div>
-                            <p class="font-display text-3xl text-gold mb-1">500+</p>
+                            <p class="font-display text-3xl md:text-4xl text-gold mb-1">
+                                <span class="stat-counter" data-target="500">0</span>+
+                            </p>
                             <p class="text-white/50 text-sm">B2B Clients</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Image -->
+                <!-- Image with Floating Effect -->
                 <div class="hidden lg:block fade-up delay-2">
-                    <div class="relative">
-                        <img src="img-gallery/58d11d_Nazmi-AKyuz_RIO__SultansGem_(382).jpg"
-                            alt="Premium Cotton Products"
-                            class="w-full aspect-[4/5] object-cover">
+                    <div class="relative floating">
+                        <div class="image-zoom">
+                            <img src="img-gallery/58d11d_Nazmi-AKyuz_RIO__SultansGem_(382).jpg"
+                                alt="Premium Cotton Products"
+                                class="w-full aspect-[4/5] object-cover shadow-2xl">
+                        </div>
                         <!-- Floating Badge -->
-                        <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl">
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                             <div class="flex items-center gap-4">
                                 <div class="w-16 h-16 bg-pearl flex items-center justify-center">
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/OEKO-TEX_Logo.svg/200px-OEKO-TEX_Logo.svg.png"
@@ -461,6 +812,9 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Decorative Elements -->
+                        <div class="absolute -top-4 -right-4 w-24 h-24 border-2 border-gold/30 -z-10"></div>
+                        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-gold/5 -z-10"></div>
                     </div>
                 </div>
             </div>
@@ -471,25 +825,197 @@
     <div class="bg-pearl py-8 border-y border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-                <div class="flex items-center gap-3 text-slate">
+                <div class="flex items-center gap-3 text-slate reveal-item">
                     <i class="fas fa-certificate text-gold text-xl"></i>
                     <span class="text-sm font-medium">Oeko-Tex® Certified</span>
                 </div>
-                <div class="flex items-center gap-3 text-slate">
+                <div class="flex items-center gap-3 text-slate reveal-item">
                     <i class="fas fa-award text-gold text-xl"></i>
                     <span class="text-sm font-medium">ISO 9001:2015</span>
                 </div>
-                <div class="flex items-center gap-3 text-slate">
+                <div class="flex items-center gap-3 text-slate reveal-item">
                     <i class="fas fa-leaf text-gold text-xl"></i>
                     <span class="text-sm font-medium">100% Organic Cotton</span>
                 </div>
-                <div class="flex items-center gap-3 text-slate">
+                <div class="flex items-center gap-3 text-slate reveal-item">
                     <i class="fas fa-globe text-gold text-xl"></i>
                     <span class="text-sm font-medium">Global Export</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Our Story / Heritage Section -->
+    <section class="py-20 md:py-28 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-8 h-px bg-gold"></div>
+                    <span class="text-gold text-sm font-medium tracking-wider uppercase">Our Story</span>
+                    <div class="w-8 h-px bg-gold"></div>
+                </div>
+                <h2 class="font-display text-3xl md:text-4xl text-navy mb-4">
+                    Three Generations of Excellence
+                </h2>
+                <p class="text-slate text-lg">
+                    From a small family workshop in Denizli to a global textile manufacturer,
+                    our journey is woven with passion, quality, and Turkish craftsmanship.
+                </p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline relative max-w-4xl mx-auto">
+                <!-- 1998 -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 mb-12">
+                    <div class="md:text-right md:pr-12">
+                        <span class="inline-block px-4 py-1 bg-gold/10 text-gold font-bold text-lg mb-2">1998</span>
+                        <h3 class="font-display text-xl text-navy mb-2">Founded in Denizli</h3>
+                        <p class="text-slate">Started as a family workshop in Turkey's textile heartland, carrying forward generations of weaving tradition.</p>
+                    </div>
+                    <div class="timeline-dot top-2"></div>
+                    <div class="hidden md:block"></div>
+                </div>
+
+                <!-- 2005 -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 mb-12">
+                    <div class="hidden md:block"></div>
+                    <div class="timeline-dot top-2"></div>
+                    <div class="md:pl-12">
+                        <span class="inline-block px-4 py-1 bg-gold/10 text-gold font-bold text-lg mb-2">2005</span>
+                        <h3 class="font-display text-xl text-navy mb-2">Oeko-Tex Certified</h3>
+                        <p class="text-slate">Achieved our first international certification, proving our commitment to safe, sustainable textiles.</p>
+                    </div>
+                </div>
+
+                <!-- 2010 -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 mb-12">
+                    <div class="md:text-right md:pr-12">
+                        <span class="inline-block px-4 py-1 bg-gold/10 text-gold font-bold text-lg mb-2">2010</span>
+                        <h3 class="font-display text-xl text-navy mb-2">Global Expansion</h3>
+                        <p class="text-slate">Expanded exports to 50+ countries, partnering with luxury hotels and premium retailers worldwide.</p>
+                    </div>
+                    <div class="timeline-dot top-2"></div>
+                    <div class="hidden md:block"></div>
+                </div>
+
+                <!-- 2020 -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16 mb-12">
+                    <div class="hidden md:block"></div>
+                    <div class="timeline-dot top-2"></div>
+                    <div class="md:pl-12">
+                        <span class="inline-block px-4 py-1 bg-gold/10 text-gold font-bold text-lg mb-2">2020</span>
+                        <h3 class="font-display text-xl text-navy mb-2">Modern Facility</h3>
+                        <p class="text-slate">Opened our 10,000 m² state-of-the-art manufacturing facility with advanced weaving technology.</p>
+                    </div>
+                </div>
+
+                <!-- Today -->
+                <div class="timeline-item relative grid md:grid-cols-2 gap-8 md:gap-16">
+                    <div class="md:text-right md:pr-12">
+                        <span class="inline-block px-4 py-1 bg-navy text-white font-bold text-lg mb-2">Today</span>
+                        <h3 class="font-display text-xl text-navy mb-2">500+ Global Partners</h3>
+                        <p class="text-slate">Trusted by world-class hotels, spas, and retailers. Continuing our legacy of Turkish textile excellence.</p>
+                    </div>
+                    <div class="timeline-dot top-2"></div>
+                    <div class="hidden md:block"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manufacturing Process Section -->
+    <section class="py-20 md:py-28 bg-navy text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-8 h-px bg-gold"></div>
+                    <span class="text-gold text-sm font-medium tracking-wider uppercase">Our Process</span>
+                    <div class="w-8 h-px bg-gold"></div>
+                </div>
+                <h2 class="font-display text-3xl md:text-4xl text-white mb-4">
+                    From Cotton to Quality
+                </h2>
+                <p class="text-white/70 text-lg">
+                    Every piece passes through our meticulous 6-step process,
+                    ensuring premium quality from raw Aegean cotton to your doorstep.
+                </p>
+            </div>
+
+            <!-- Process Steps -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-4">
+                <!-- Step 1 -->
+                <div class="process-step text-center">
+                    <div class="process-icon w-20 h-20 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center border-2 border-gold/50">
+                        <i class="fas fa-seedling text-gold text-2xl"></i>
+                    </div>
+                    <div class="text-gold text-sm font-medium mb-1">Step 1</div>
+                    <h3 class="font-display text-lg text-white mb-2">Harvesting</h3>
+                    <p class="text-white/50 text-sm">Premium Aegean cotton selected by hand</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="process-step text-center">
+                    <div class="process-icon w-20 h-20 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center border-2 border-gold/50">
+                        <i class="fas fa-wind text-gold text-2xl"></i>
+                    </div>
+                    <div class="text-gold text-sm font-medium mb-1">Step 2</div>
+                    <h3 class="font-display text-lg text-white mb-2">Spinning</h3>
+                    <p class="text-white/50 text-sm">Ring-spun for superior softness</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-step text-center">
+                    <div class="process-icon w-20 h-20 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center border-2 border-gold/50">
+                        <i class="fas fa-th text-gold text-2xl"></i>
+                    </div>
+                    <div class="text-gold text-sm font-medium mb-1">Step 3</div>
+                    <h3 class="font-display text-lg text-white mb-2">Weaving</h3>
+                    <p class="text-white/50 text-sm">Traditional & modern techniques</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="process-step text-center">
+                    <div class="process-icon w-20 h-20 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center border-2 border-gold/50">
+                        <i class="fas fa-palette text-gold text-2xl"></i>
+                    </div>
+                    <div class="text-gold text-sm font-medium mb-1">Step 4</div>
+                    <h3 class="font-display text-lg text-white mb-2">Dyeing</h3>
+                    <p class="text-white/50 text-sm">Eco-friendly, colorfast dyes</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="process-step text-center">
+                    <div class="process-icon w-20 h-20 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center border-2 border-gold/50">
+                        <i class="fas fa-check-double text-gold text-2xl"></i>
+                    </div>
+                    <div class="text-gold text-sm font-medium mb-1">Step 5</div>
+                    <h3 class="font-display text-lg text-white mb-2">Quality Control</h3>
+                    <p class="text-white/50 text-sm">Triple-inspected perfection</p>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="process-step text-center">
+                    <div class="process-icon w-20 h-20 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center border-2 border-gold/50">
+                        <i class="fas fa-shipping-fast text-gold text-2xl"></i>
+                    </div>
+                    <div class="text-gold text-sm font-medium mb-1">Step 6</div>
+                    <h3 class="font-display text-lg text-white mb-2">Shipping</h3>
+                    <p class="text-white/50 text-sm">Worldwide delivery in 3-5 days</p>
+                </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="text-center mt-16 reveal">
+                <p class="text-white/60 mb-6">Want to see our facility? Schedule a virtual tour.</p>
+                <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-semibold hover:bg-gold-light transition-colors">
+                    Request Factory Tour
+                    <i class="fas fa-video text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Products Section -->
     <section id="products" class="py-20 md:py-28 bg-white">
@@ -514,7 +1040,7 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
                 <!-- Foca -->
-                <a href="products/foca.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/foca.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/a36cc5_Nazmi_sku-stone-display-foca__Ba%C5%9Fl%C4%B1ks%C4%B1z-2.jpg"
                             alt="Foca Peshtemal"
@@ -530,7 +1056,7 @@
                 </a>
 
                 <!-- Bodrum -->
-                <a href="products/bodrum.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/bodrum.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/6f60c5_Nazmi_sku-sultan-display-bodrum__IMG_0002.jpg"
                             alt="Bodrum Peshtemal"
@@ -543,7 +1069,7 @@
                 </a>
 
                 <!-- Cesme -->
-                <a href="products/cesme.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/cesme.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/a0ddab_Nazmi_sku-sultantrend-display-cesme__IMG_0074.jpg"
                             alt="Cesme Peshtemal"
@@ -559,7 +1085,7 @@
                 </a>
 
                 <!-- Datca -->
-                <a href="products/datca.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/datca.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/248058_Nazmi_sku-vegas-display-datca__SultansGem_(534).jpg"
                             alt="Datca Peshtemal"
@@ -572,7 +1098,7 @@
                 </a>
 
                 <!-- Fethiye -->
-                <a href="products/fethiye.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/fethiye.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/1c689c_Nazmi_sku-zebra-display-fethiye__Ba%C5%9Fl%C4%B1ks%C4%B1z-65.jpg"
                             alt="Fethiye Peshtemal"
@@ -585,7 +1111,7 @@
                 </a>
 
                 <!-- Kas -->
-                <a href="products/kas.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/kas.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/f632d0_Nazmi_sku-multicolor-display-kas__SultansGem_(442).jpg"
                             alt="Kas Peshtemal"
@@ -601,7 +1127,7 @@
                 </a>
 
                 <!-- Akyaka -->
-                <a href="products/akyaka.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/akyaka.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/b07c2e_Nazmi_sku-mandala-display-akyaka__SultansGem_(402).jpg"
                             alt="Akyaka Peshtemal"
@@ -614,7 +1140,7 @@
                 </a>
 
                 <!-- Alacati -->
-                <a href="products/alacati.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/alacati.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/64a4cf_Nazmi_sku-mikrokoton-display-alacati__IMG_0034.jpg"
                             alt="Alacati Peshtemal"
@@ -627,7 +1153,7 @@
                 </a>
 
                 <!-- Asos -->
-                <a href="products/asos.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/asos.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/8b6e4c_Nazmi_sku-netherland-display-asos__Ba%C5%9Fl%C4%B1ks%C4%B1z-79.jpg"
                             alt="Asos Peshtemal"
@@ -640,7 +1166,7 @@
                 </a>
 
                 <!-- Yalikavak -->
-                <a href="products/yalikavak.html" class="group hover-lift bg-white border border-gray-200 reveal">
+                <a href="products/yalikavak.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/d93570_Nazmi_sku-bugra-display-yalikavak__Ba%C5%9Fl%C4%B1ks%C4%B1z-83.jpg"
                             alt="Yalikavak Peshtemal"
@@ -1340,15 +1866,27 @@
         </div>
     </footer>
 
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="22.5"></circle>
+        </svg>
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- Floating WhatsApp -->
     <a href="https://wa.me/905354124910?text=Hello,%20I'm%20interested%20in%20your%20textile%20products." target="_blank"
-        class="fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        class="whatsapp-pulse fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 rounded-full"
+        aria-label="Contact us on WhatsApp">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
     <!-- JavaScript -->
     <script>
-        // Mobile Menu
+        // ========== MOBILE MENU ==========
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const closeMobileMenu = document.getElementById('closeMobileMenu');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1369,7 +1907,7 @@
             mobileProductsIcon.classList.toggle('rotate-180');
         });
 
-        // Header Scroll
+        // ========== HEADER SCROLL ==========
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1379,20 +1917,176 @@
             }
         });
 
-        // Reveal on Scroll
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            reveals.forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                if (top < window.innerHeight - 100) {
-                    el.classList.add('active');
+        // ========== SCROLL PROGRESS BAR ==========
+        const scrollProgress = document.getElementById('scrollProgress');
+        const backToTop = document.getElementById('backToTop');
+        const progressCircle = backToTop.querySelector('circle');
+        const circumference = 141.37;
+
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollTop / docHeight;
+
+            // Update progress bar
+            scrollProgress.style.width = `${progress * 100}%`;
+
+            // Update back to top button
+            backToTop.classList.toggle('visible', scrollTop > 300);
+
+            // Update progress circle
+            const offset = circumference * (1 - progress);
+            progressCircle.style.strokeDashoffset = offset;
+        }
+        window.addEventListener('scroll', updateScrollProgress);
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========== ENHANCED REVEAL ANIMATIONS ==========
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
             });
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
+        }, { threshold: 0.15, rootMargin: '-50px' });
 
-        // Smooth Scroll
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .reveal-item, .timeline-item, .process-step').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Image zoom on scroll
+        const imageZoomObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.image-zoom').forEach(el => {
+            imageZoomObserver.observe(el);
+        });
+
+        // ========== COUNTER ANIMATION ==========
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (target - start) * eased);
+
+                element.textContent = current;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target;
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Trigger counter animation when stats are in view
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    const target = parseInt(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-counter').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // ========== TYPING EFFECT ==========
+        class TypeWriter {
+            constructor(element, texts, options = {}) {
+                this.element = element;
+                this.texts = texts;
+                this.typeSpeed = options.typeSpeed || 80;
+                this.deleteSpeed = options.deleteSpeed || 40;
+                this.pauseDuration = options.pauseDuration || 2500;
+                this.currentText = 0;
+                this.charIndex = 0;
+                this.isDeleting = false;
+                this.type();
+            }
+
+            type() {
+                const current = this.texts[this.currentText];
+
+                if (this.isDeleting) {
+                    this.element.textContent = current.substring(0, this.charIndex - 1);
+                    this.charIndex--;
+                } else {
+                    this.element.textContent = current.substring(0, this.charIndex + 1);
+                    this.charIndex++;
+                }
+
+                let delay = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+
+                if (!this.isDeleting && this.charIndex === current.length) {
+                    delay = this.pauseDuration;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.charIndex === 0) {
+                    this.isDeleting = false;
+                    this.currentText = (this.currentText + 1) % this.texts.length;
+                }
+
+                setTimeout(() => this.type(), delay);
+            }
+        }
+
+        // Initialize typing effect
+        const heroTyping = document.getElementById('heroTyping');
+        if (heroTyping) {
+            new TypeWriter(heroTyping, [
+                'Textile Manufacturing',
+                'Hotel & Spa Quality',
+                'Peshtemals & Towels',
+                'Bathrobes & Linens'
+            ]);
+        }
+
+        // ========== 3D CARD TILT ==========
+        document.querySelectorAll('.card-3d').forEach(card => {
+            const inner = card.querySelector('.card-3d-inner');
+            if (!inner) return;
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
+
+                inner.style.setProperty('--rotateX', `${rotateX}deg`);
+                inner.style.setProperty('--rotateY', `${rotateY}deg`);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                inner.style.setProperty('--rotateX', '0deg');
+                inner.style.setProperty('--rotateY', '0deg');
+            });
+        });
+
+        // ========== SMOOTH SCROLL ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1403,7 +2097,7 @@
             });
         });
 
-        // Form Submission with success message
+        // ========== FORM SUBMISSION ==========
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -1414,7 +2108,6 @@
             const product = formData.get('product');
             const message = formData.get('message');
 
-            // Basic validation
             if (!name || !company || !email || !message) {
                 showNotification('Please fill in all required fields.', 'error');
                 return;
@@ -1433,7 +2126,7 @@
             showNotification('Opening WhatsApp... Your inquiry has been prepared!', 'success');
         });
 
-        // Notification function
+        // ========== NOTIFICATION ==========
         function showNotification(message, type) {
             const notification = document.createElement('div');
             notification.className = `fixed top-24 right-6 px-6 py-4 rounded-lg shadow-xl z-[9999] transform translate-x-full transition-transform duration-300 ${type === 'success' ? 'bg-success text-white' : 'bg-red-600 text-white'}`;
@@ -1447,7 +2140,7 @@
             }, 4000);
         }
 
-        // FAQ Toggle
+        // ========== FAQ TOGGLE ==========
         function toggleFaq(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
@@ -1456,21 +2149,21 @@
             icon.classList.toggle('rotate-180');
         }
 
-        // Page Loader
+        // ========== PAGE LOADER ==========
         const pageLoader = document.getElementById('pageLoader');
 
-        // Hide loader when page is fully loaded
         window.addEventListener('load', () => {
             setTimeout(() => {
                 pageLoader.classList.add('hidden');
+                // Trigger initial animations
+                updateScrollProgress();
             }, 800);
         });
 
-        // Show loader on page navigation
+        // Page transition
         document.querySelectorAll('a[href]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
-                // Only show loader for internal page links (not anchors or external)
                 if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel')) {
                     e.preventDefault();
                     pageLoader.classList.remove('hidden');
