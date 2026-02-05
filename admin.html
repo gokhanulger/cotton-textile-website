@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -25,6 +29,7 @@
                         'gold': '#B8860B',
                         'gold-light': '#D4A843',
                         'success': '#059669',
+                        'danger': '#DC2626',
                     },
                     fontFamily: {
                         'display': ['Libre Baskerville', 'serif'],
@@ -37,404 +42,671 @@
 
     <style>
         html { scroll-behavior: smooth; }
+        .drag-over { border-color: #B8860B !important; background-color: rgba(184, 134, 11, 0.1) !important; }
+        .image-card:hover .image-overlay { opacity: 1; }
+        .image-overlay { opacity: 0; transition: opacity 0.2s ease; }
+        .toast { animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s; }
+        @keyframes slideIn { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
     </style>
 </head>
 <body class="font-body text-steel bg-pearl min-h-screen">
 
-    <!-- Header -->
-    <header class="bg-navy text-white">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 border-2 border-white/30 flex items-center justify-center">
-                        <span class="font-display text-white font-bold">CT</span>
-                    </div>
-                    <div>
-                        <span class="font-display text-lg text-white block leading-tight">Cotton Textile</span>
-                        <span class="text-[10px] text-white/50 tracking-[0.15em] uppercase">Admin Panel</span>
-                    </div>
-                </div>
-                <a href="index.html" class="text-sm text-white/70 hover:text-white">
-                    <i class="fas fa-external-link-alt mr-2"></i>View Site
-                </a>
-            </div>
-        </nav>
-    </header>
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-50 space-y-2"></div>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-        <!-- Page Title -->
-        <div class="mb-8">
-            <h1 class="text-2xl font-bold text-navy mb-2">Product Management</h1>
-            <p class="text-slate">SKU and Display name mapping for Nazmi Textile products</p>
-        </div>
-
-        <!-- Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-navy/10 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-box text-navy text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-navy">10</p>
-                        <p class="text-sm text-slate">Total Products</p>
-                    </div>
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-navy/90 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 border-2 border-navy mx-auto flex items-center justify-center mb-4">
+                    <span class="font-display text-2xl text-navy font-bold">CT</span>
                 </div>
+                <h1 class="font-display text-2xl text-navy mb-2">Admin Panel</h1>
+                <p class="text-slate text-sm">Enter password to access the dashboard</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-check-circle text-success text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-navy">10</p>
-                        <p class="text-sm text-slate">Active Pages</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-gold/10 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-images text-gold text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-navy">263</p>
-                        <p class="text-sm text-slate">Total Images</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-industry text-blue-600 text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-navy">Nazmi</p>
-                        <p class="text-sm text-slate">Supplier</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Table -->
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-                <h2 class="text-lg font-semibold text-navy">Peshtemal Products - SKU Mapping</h2>
-                <div class="flex items-center gap-2">
-                    <span class="text-xs text-slate bg-pearl px-3 py-1 rounded-full">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        SKU = Manufacturer Code for ordering
-                    </span>
-                </div>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-pearl">
-                        <tr>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">#</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">
-                                <i class="fas fa-tag mr-2 text-gold"></i>SKU (Manufacturer)
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">
-                                <i class="fas fa-store mr-2 text-success"></i>Display Name (Catalog)
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">Images</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">Page</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">1</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    stone
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Foca</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">45</td>
-                            <td class="px-6 py-4">
-                                <a href="products/foca.html" class="text-sm text-blue-600 hover:underline">foca.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/foca.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">2</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    sultan
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Bodrum</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">42</td>
-                            <td class="px-6 py-4">
-                                <a href="products/bodrum.html" class="text-sm text-blue-600 hover:underline">bodrum.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/bodrum.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">3</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    sultantrend
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Cesme</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">38</td>
-                            <td class="px-6 py-4">
-                                <a href="products/cesme.html" class="text-sm text-blue-600 hover:underline">cesme.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/cesme.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">4</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    vegas
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Datca</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">16</td>
-                            <td class="px-6 py-4">
-                                <a href="products/datca.html" class="text-sm text-blue-600 hover:underline">datca.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/datca.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">5</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    zebra
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Fethiye</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">25</td>
-                            <td class="px-6 py-4">
-                                <a href="products/fethiye.html" class="text-sm text-blue-600 hover:underline">fethiye.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/fethiye.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">6</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    multicolor
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Kas</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">19</td>
-                            <td class="px-6 py-4">
-                                <a href="products/kas.html" class="text-sm text-blue-600 hover:underline">kas.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/kas.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">7</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    mandala
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Akyaka</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">20</td>
-                            <td class="px-6 py-4">
-                                <a href="products/akyaka.html" class="text-sm text-blue-600 hover:underline">akyaka.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/akyaka.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">8</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    mikrokoton
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Alacati</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">17</td>
-                            <td class="px-6 py-4">
-                                <a href="products/alacati.html" class="text-sm text-blue-600 hover:underline">alacati.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/alacati.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">9</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    netherland
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Asos</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">21</td>
-                            <td class="px-6 py-4">
-                                <a href="products/asos.html" class="text-sm text-blue-600 hover:underline">asos.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/asos.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-pearl/50 transition-colors">
-                            <td class="px-6 py-4 text-sm text-slate">10</td>
-                            <td class="px-6 py-4">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gold/10 text-gold">
-                                    bugra
-                                </span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="text-navy font-medium">Yalikavak</span>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-slate">20</td>
-                            <td class="px-6 py-4">
-                                <a href="products/yalikavak.html" class="text-sm text-blue-600 hover:underline">yalikavak.html</a>
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="products/yalikavak.html" target="_blank" class="text-slate hover:text-navy">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Quick Reference -->
-        <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-navy mb-4">
-                <i class="fas fa-clipboard-list mr-2 text-gold"></i>Quick Reference for Supplier Orders
-            </h3>
-            <div class="grid md:grid-cols-2 gap-6">
+            <form id="loginForm" class="space-y-4">
                 <div>
-                    <h4 class="font-medium text-navy mb-3">Order Format Example:</h4>
-                    <div class="bg-pearl p-4 rounded-lg font-mono text-sm">
-                        <p class="text-slate mb-2">Supplier: <span class="text-navy font-semibold">Nazmi Textile</span></p>
-                        <p class="text-slate mb-2">Product: <span class="text-gold font-semibold">stone</span> (SKU)</p>
-                        <p class="text-slate mb-2">Quantity: <span class="text-navy">100 pcs</span></p>
-                        <p class="text-slate">Colors: <span class="text-navy">Assorted</span></p>
+                    <label class="block text-sm font-medium text-navy mb-2">Password</label>
+                    <input type="password" id="passwordInput"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition"
+                           placeholder="Enter admin password">
+                    <p id="loginError" class="text-danger text-sm mt-2 hidden">Incorrect password. Please try again.</p>
+                </div>
+                <button type="submit"
+                        class="w-full bg-navy text-white py-3 rounded-lg font-semibold hover:bg-navy-light transition">
+                    <i class="fas fa-lock mr-2"></i>Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until login) -->
+    <div id="mainContent" class="hidden">
+        <!-- Header -->
+        <header class="bg-navy text-white sticky top-0 z-40">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 border-2 border-white/30 flex items-center justify-center">
+                            <span class="font-display text-white font-bold">CT</span>
+                        </div>
+                        <div>
+                            <span class="font-display text-lg text-white block leading-tight">Cotton Textile</span>
+                            <span class="text-[10px] text-white/50 tracking-[0.15em] uppercase">Admin Panel</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="index.html" target="_blank" class="text-sm text-white/70 hover:text-white">
+                            <i class="fas fa-external-link-alt mr-2"></i>View Site
+                        </a>
+                        <button id="logoutBtn" class="text-sm text-white/70 hover:text-white">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                        </button>
                     </div>
                 </div>
+            </nav>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Firebase Status -->
+            <div id="firebaseStatus" class="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-spinner fa-spin text-yellow-600"></i>
+                    <span class="text-yellow-800">Connecting to Firebase...</span>
+                </div>
+            </div>
+
+            <!-- Page Title & Upload -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
                 <div>
-                    <h4 class="font-medium text-navy mb-3">Notes:</h4>
-                    <ul class="space-y-2 text-sm text-slate">
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-success mt-1"></i>
-                            <span>Always use <strong class="text-gold">SKU names</strong> when ordering from Nazmi</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-success mt-1"></i>
-                            <span><strong class="text-navy">Display names</strong> are for website and customer catalog only</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-success mt-1"></i>
-                            <span>Minimum order: 100 pieces per color per SKU</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-info-circle text-blue-500 mt-1"></i>
-                            <span>Contact Nazmi directly for custom color requests</span>
-                        </li>
-                    </ul>
+                    <h1 class="text-2xl font-bold text-navy mb-2">Image Manager</h1>
+                    <p class="text-slate">Upload and manage product images for your website</p>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-lg font-semibold text-navy mb-4">
+                    <i class="fas fa-cloud-upload-alt mr-2 text-gold"></i>Upload Images
+                </h2>
+
+                <!-- Category Selection -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-navy mb-2">Select Category</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="category-btn active px-4 py-2 rounded-lg border-2 border-navy bg-navy text-white text-sm font-medium transition" data-category="homepage">
+                            <i class="fas fa-home mr-2"></i>Homepage
+                        </button>
+                        <button class="category-btn px-4 py-2 rounded-lg border-2 border-gray-300 bg-white text-steel text-sm font-medium hover:border-navy transition" data-category="peshtemals">
+                            <i class="fas fa-scroll mr-2"></i>Peshtemals
+                        </button>
+                        <button class="category-btn px-4 py-2 rounded-lg border-2 border-gray-300 bg-white text-steel text-sm font-medium hover:border-navy transition" data-category="towels">
+                            <i class="fas fa-water mr-2"></i>Towels
+                        </button>
+                        <button class="category-btn px-4 py-2 rounded-lg border-2 border-gray-300 bg-white text-steel text-sm font-medium hover:border-navy transition" data-category="robes">
+                            <i class="fas fa-tshirt mr-2"></i>Robes
+                        </button>
+                        <button class="category-btn px-4 py-2 rounded-lg border-2 border-gray-300 bg-white text-steel text-sm font-medium hover:border-navy transition" data-category="hotel">
+                            <i class="fas fa-hotel mr-2"></i>Hotel Collection
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Drop Zone -->
+                <div id="dropZone"
+                     class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-gold transition">
+                    <input type="file" id="fileInput" multiple accept="image/*" class="hidden">
+                    <div class="space-y-3">
+                        <div class="w-16 h-16 bg-pearl rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-cloud-upload-alt text-3xl text-gold"></i>
+                        </div>
+                        <div>
+                            <p class="text-navy font-medium">Drop images here or click to browse</p>
+                            <p class="text-sm text-slate">Supports JPG, PNG, WebP (max 10MB each)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Progress -->
+                <div id="uploadProgress" class="hidden mt-4 space-y-2"></div>
+            </div>
+
+            <!-- Image Gallery -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-navy">
+                        <i class="fas fa-images mr-2 text-gold"></i>Uploaded Images
+                    </h2>
+                    <div class="flex items-center gap-4">
+                        <select id="filterCategory" class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none">
+                            <option value="all">All Categories</option>
+                            <option value="homepage">Homepage</option>
+                            <option value="peshtemals">Peshtemals</option>
+                            <option value="towels">Towels</option>
+                            <option value="robes">Robes</option>
+                            <option value="hotel">Hotel Collection</option>
+                        </select>
+                        <span id="imageCount" class="text-sm text-slate">Loading...</span>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loadingState" class="text-center py-12">
+                    <i class="fas fa-spinner fa-spin text-4xl text-gold mb-4"></i>
+                    <p class="text-slate">Loading images...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden text-center py-12">
+                    <div class="w-20 h-20 bg-pearl rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-image text-4xl text-silver"></i>
+                    </div>
+                    <p class="text-navy font-medium mb-2">No images uploaded yet</p>
+                    <p class="text-sm text-slate">Upload your first image using the form above</p>
+                </div>
+
+                <!-- Image Grid -->
+                <div id="imageGrid" class="hidden grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <!-- Images will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="mt-8 bg-white rounded-xl shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-navy mb-4">
+                    <i class="fas fa-info-circle mr-2 text-gold"></i>How to Use
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center p-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-gold font-bold text-xl">1</span>
+                        </div>
+                        <h4 class="font-medium text-navy mb-2">Select Category</h4>
+                        <p class="text-sm text-slate">Choose where the image will be used on the website</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-gold font-bold text-xl">2</span>
+                        </div>
+                        <h4 class="font-medium text-navy mb-2">Upload Images</h4>
+                        <p class="text-sm text-slate">Drag & drop or click to select your images</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-gold font-bold text-xl">3</span>
+                        </div>
+                        <h4 class="font-medium text-navy mb-2">Copy URL</h4>
+                        <p class="text-sm text-slate">Click an image to copy its URL for use in your website</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKU Reference Table -->
+            <div class="mt-8 bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-navy">
+                        <i class="fas fa-table mr-2 text-gold"></i>Product SKU Reference
+                    </h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-pearl">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase">SKU</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase">Display Name</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase">Category</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-navy uppercase">Page</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">stone</span></td><td class="px-6 py-3">Foca</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/foca.html" class="text-blue-600 hover:underline">foca.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">sultan</span></td><td class="px-6 py-3">Bodrum</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/bodrum.html" class="text-blue-600 hover:underline">bodrum.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">sultantrend</span></td><td class="px-6 py-3">Cesme</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/cesme.html" class="text-blue-600 hover:underline">cesme.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">vegas</span></td><td class="px-6 py-3">Datca</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/datca.html" class="text-blue-600 hover:underline">datca.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">zebra</span></td><td class="px-6 py-3">Fethiye</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/fethiye.html" class="text-blue-600 hover:underline">fethiye.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">multicolor</span></td><td class="px-6 py-3">Kas</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/kas.html" class="text-blue-600 hover:underline">kas.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">mandala</span></td><td class="px-6 py-3">Akyaka</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/akyaka.html" class="text-blue-600 hover:underline">akyaka.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">mikrokoton</span></td><td class="px-6 py-3">Alacati</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/alacati.html" class="text-blue-600 hover:underline">alacati.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">netherland</span></td><td class="px-6 py-3">Asos</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/asos.html" class="text-blue-600 hover:underline">asos.html</a></td></tr>
+                            <tr class="hover:bg-pearl/50"><td class="px-6 py-3"><span class="text-gold font-medium">bugra</span></td><td class="px-6 py-3">Yalikavak</td><td class="px-6 py-3 text-slate">Peshtemals</td><td class="px-6 py-3"><a href="products/yalikavak.html" class="text-blue-600 hover:underline">yalikavak.html</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-navy text-white/60 py-6 mt-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+                <p>Cotton Textile Admin Panel &bull; For internal use only</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+        <button id="closeModal" class="absolute top-4 right-4 text-white text-2xl hover:text-gold">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="max-w-4xl w-full">
+            <img id="modalImage" src="" alt="" class="max-h-[70vh] mx-auto rounded-lg">
+            <div class="mt-4 text-center">
+                <p id="modalUrl" class="text-white/80 text-sm mb-3 break-all"></p>
+                <div class="flex justify-center gap-3">
+                    <button id="copyUrlBtn" class="bg-gold text-white px-6 py-2 rounded-lg hover:bg-gold-light transition">
+                        <i class="fas fa-copy mr-2"></i>Copy URL
+                    </button>
+                    <button id="deleteBtn" class="bg-danger text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                        <i class="fas fa-trash mr-2"></i>Delete
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Folder Structure Reference -->
-        <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-navy mb-4">
-                <i class="fas fa-folder-tree mr-2 text-gold"></i>Image Folder Structure
-            </h3>
-            <div class="bg-pearl p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                <pre class="text-slate">
-Nazmi textile/
-├── index.html
-├── admin.html (this page)
-├── products/
-│   ├── foca.html      (stone)
-│   ├── bodrum.html    (sultan)
-│   ├── cesme.html     (sultantrend)
-│   ├── datca.html     (vegas)
-│   ├── fethiye.html   (zebra)
-│   ├── kas.html       (multicolor)
-│   ├── akyaka.html    (mandala)
-│   ├── alacati.html   (mikrokoton)
-│   ├── asos.html      (netherland)
-│   └── yalikavak.html (bugra)
-└── Nazmi/
-    ├── sku#stone display#foca/
-    ├── sku#sultan display#bodrum/
-    ├── sku#sultantrend display#cesme/
-    ├── sku#vegas display#datca/
-    ├── sku#zebra display#fethiye/
-    ├── sku#multicolor display#kas/
-    ├── sku#mandala display#akyaka/
-    ├── sku#mikrokoton display#alacati/
-    ├── sku#netherland display#asos/
-    └── sku#bugra display#yalikavak/
-                </pre>
-            </div>
-        </div>
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBh821O8Y5chavZKPiEIh-OWnuX-ETv7Dc",
+            authDomain: "theturkishcotton-e5d43.firebaseapp.com",
+            projectId: "theturkishcotton-e5d43",
+            storageBucket: "theturkishcotton-e5d43.firebasestorage.app",
+            messagingSenderId: "558153484063",
+            appId: "1:558153484063:web:d8628f4328c9d44e42122a",
+            measurementId: "G-S9MJ5F5SXD"
+        };
 
-    </main>
+        // Admin password (change this!)
+        const ADMIN_PASSWORD = "cotton2024";
 
-    <!-- Footer -->
-    <footer class="bg-navy text-white/60 py-6 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-            <p>Cotton Textile Admin Panel &bull; For internal use only</p>
-        </div>
-    </footer>
+        // State
+        let selectedCategory = "homepage";
+        let storage = null;
+        let firebaseInitialized = false;
+
+        // DOM Elements
+        const loginModal = document.getElementById('loginModal');
+        const mainContent = document.getElementById('mainContent');
+        const loginForm = document.getElementById('loginForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const uploadProgress = document.getElementById('uploadProgress');
+        const imageGrid = document.getElementById('imageGrid');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const imageCount = document.getElementById('imageCount');
+        const filterCategory = document.getElementById('filterCategory');
+        const firebaseStatus = document.getElementById('firebaseStatus');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalUrl = document.getElementById('modalUrl');
+        const closeModal = document.getElementById('closeModal');
+        const copyUrlBtn = document.getElementById('copyUrlBtn');
+        const deleteBtn = document.getElementById('deleteBtn');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if already logged in
+            if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                showMainContent();
+            }
+
+            initializeFirebase();
+            setupEventListeners();
+        });
+
+        // Initialize Firebase
+        function initializeFirebase() {
+            try {
+                firebase.initializeApp(firebaseConfig);
+                storage = firebase.storage();
+
+                // Test connection
+                storage.ref().child('test').getDownloadURL().catch(err => {
+                    // This error is expected if file doesn't exist, but proves connection works
+                    if (err.code === 'storage/object-not-found') {
+                        firebaseInitialized = true;
+                        updateFirebaseStatus('success', 'Connected to Firebase Storage');
+                        loadImages();
+                    } else if (err.code === 'storage/unauthorized') {
+                        updateFirebaseStatus('warning', 'Firebase Storage: Please set up security rules in Firebase Console');
+                    } else {
+                        throw err;
+                    }
+                });
+
+                firebaseInitialized = true;
+                updateFirebaseStatus('success', 'Connected to Firebase Storage');
+                loadImages();
+
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+                updateFirebaseStatus('error', 'Firebase connection failed. Please check configuration.');
+            }
+        }
+
+        function updateFirebaseStatus(type, message) {
+            const colors = {
+                success: { bg: 'bg-green-50', border: 'border-green-200', text: 'text-green-800', icon: 'fa-check-circle text-green-600' },
+                warning: { bg: 'bg-yellow-50', border: 'border-yellow-200', text: 'text-yellow-800', icon: 'fa-exclamation-triangle text-yellow-600' },
+                error: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-800', icon: 'fa-times-circle text-red-600' }
+            };
+            const c = colors[type];
+            firebaseStatus.className = `mb-6 p-4 ${c.bg} border ${c.border} rounded-lg`;
+            firebaseStatus.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <i class="fas ${c.icon}"></i>
+                    <span class="${c.text}">${message}</span>
+                </div>
+            `;
+
+            if (type === 'success') {
+                setTimeout(() => firebaseStatus.classList.add('hidden'), 3000);
+            }
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Login form
+            loginForm.addEventListener('submit', handleLogin);
+
+            // Logout
+            logoutBtn.addEventListener('click', handleLogout);
+
+            // Category buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.category-btn').forEach(b => {
+                        b.classList.remove('active', 'border-navy', 'bg-navy', 'text-white');
+                        b.classList.add('border-gray-300', 'bg-white', 'text-steel');
+                    });
+                    btn.classList.add('active', 'border-navy', 'bg-navy', 'text-white');
+                    btn.classList.remove('border-gray-300', 'bg-white', 'text-steel');
+                    selectedCategory = btn.dataset.category;
+                });
+            });
+
+            // File input
+            dropZone.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+
+            // Drag and drop
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('drag-over');
+            });
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            // Filter
+            filterCategory.addEventListener('change', loadImages);
+
+            // Modal
+            closeModal.addEventListener('click', () => imageModal.classList.add('hidden'));
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) imageModal.classList.add('hidden');
+            });
+            copyUrlBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(modalUrl.textContent);
+                showToast('URL copied to clipboard!', 'success');
+            });
+        }
+
+        // Login/Logout
+        function handleLogin(e) {
+            e.preventDefault();
+            if (passwordInput.value === ADMIN_PASSWORD) {
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                showMainContent();
+            } else {
+                loginError.classList.remove('hidden');
+                passwordInput.classList.add('border-danger');
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('adminLoggedIn');
+            loginModal.classList.remove('hidden');
+            mainContent.classList.add('hidden');
+            passwordInput.value = '';
+            loginError.classList.add('hidden');
+        }
+
+        function showMainContent() {
+            loginModal.classList.add('hidden');
+            mainContent.classList.remove('hidden');
+        }
+
+        // File handling
+        function handleFileSelect(e) {
+            handleFiles(e.target.files);
+        }
+
+        function handleFiles(files) {
+            if (!firebaseInitialized) {
+                showToast('Firebase not connected. Please refresh the page.', 'error');
+                return;
+            }
+
+            const validFiles = Array.from(files).filter(file => {
+                if (!file.type.startsWith('image/')) {
+                    showToast(`${file.name} is not an image`, 'error');
+                    return false;
+                }
+                if (file.size > 10 * 1024 * 1024) {
+                    showToast(`${file.name} is too large (max 10MB)`, 'error');
+                    return false;
+                }
+                return true;
+            });
+
+            if (validFiles.length === 0) return;
+
+            uploadProgress.classList.remove('hidden');
+            uploadProgress.innerHTML = '';
+
+            validFiles.forEach(file => uploadFile(file));
+        }
+
+        async function uploadFile(file) {
+            const progressId = `progress-${Date.now()}-${Math.random()}`;
+            const progressHtml = `
+                <div id="${progressId}" class="flex items-center gap-4 p-3 bg-pearl rounded-lg">
+                    <img src="${URL.createObjectURL(file)}" class="w-12 h-12 object-cover rounded">
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-navy">${file.name}</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                            <div class="progress-bar bg-gold h-2 rounded-full transition-all" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <span class="progress-text text-sm text-slate">0%</span>
+                </div>
+            `;
+            uploadProgress.insertAdjacentHTML('beforeend', progressHtml);
+
+            const progressEl = document.getElementById(progressId);
+            const progressBar = progressEl.querySelector('.progress-bar');
+            const progressText = progressEl.querySelector('.progress-text');
+
+            try {
+                const timestamp = Date.now();
+                const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+                const path = `${selectedCategory}/${timestamp}_${safeName}`;
+
+                const uploadTask = storage.ref(path).put(file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        progressBar.style.width = `${progress}%`;
+                        progressText.textContent = `${Math.round(progress)}%`;
+                    },
+                    (error) => {
+                        console.error('Upload error:', error);
+                        progressText.textContent = 'Failed';
+                        progressText.classList.add('text-danger');
+                        showToast(`Failed to upload ${file.name}`, 'error');
+                    },
+                    async () => {
+                        progressText.textContent = 'Done';
+                        progressText.classList.add('text-success');
+                        showToast(`${file.name} uploaded successfully!`, 'success');
+
+                        setTimeout(() => {
+                            progressEl.remove();
+                            if (uploadProgress.children.length === 0) {
+                                uploadProgress.classList.add('hidden');
+                            }
+                        }, 2000);
+
+                        loadImages();
+                    }
+                );
+            } catch (error) {
+                console.error('Upload error:', error);
+                showToast(`Failed to upload ${file.name}`, 'error');
+            }
+        }
+
+        // Load images
+        async function loadImages() {
+            if (!firebaseInitialized) return;
+
+            loadingState.classList.remove('hidden');
+            imageGrid.classList.add('hidden');
+            emptyState.classList.add('hidden');
+
+            try {
+                const category = filterCategory.value;
+                let allImages = [];
+
+                if (category === 'all') {
+                    const categories = ['homepage', 'peshtemals', 'towels', 'robes', 'hotel'];
+                    for (const cat of categories) {
+                        const images = await getImagesFromCategory(cat);
+                        allImages = allImages.concat(images);
+                    }
+                } else {
+                    allImages = await getImagesFromCategory(category);
+                }
+
+                loadingState.classList.add('hidden');
+
+                if (allImages.length === 0) {
+                    emptyState.classList.remove('hidden');
+                    imageCount.textContent = '0 images';
+                } else {
+                    renderImages(allImages);
+                    imageGrid.classList.remove('hidden');
+                    imageCount.textContent = `${allImages.length} image${allImages.length !== 1 ? 's' : ''}`;
+                }
+            } catch (error) {
+                console.error('Error loading images:', error);
+                loadingState.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                showToast('Failed to load images', 'error');
+            }
+        }
+
+        async function getImagesFromCategory(category) {
+            try {
+                const listRef = storage.ref(category);
+                const result = await listRef.listAll();
+
+                const images = await Promise.all(result.items.map(async (item) => {
+                    const url = await item.getDownloadURL();
+                    return {
+                        name: item.name,
+                        path: item.fullPath,
+                        url: url,
+                        category: category
+                    };
+                }));
+
+                return images;
+            } catch (error) {
+                // Folder might not exist yet
+                return [];
+            }
+        }
+
+        function renderImages(images) {
+            imageGrid.innerHTML = images.map(img => `
+                <div class="image-card relative group cursor-pointer rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+                     onclick="openImageModal('${img.url}', '${img.path}')">
+                    <img src="${img.url}" alt="${img.name}" class="w-full aspect-square object-cover">
+                    <div class="image-overlay absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <div class="flex gap-2">
+                            <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-navy hover:bg-gold hover:text-white transition">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                        <span class="text-xs text-white/80 capitalize">${img.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Modal
+        let currentImagePath = '';
+
+        function openImageModal(url, path) {
+            currentImagePath = path;
+            modalImage.src = url;
+            modalUrl.textContent = url;
+            imageModal.classList.remove('hidden');
+
+            deleteBtn.onclick = () => deleteImage(path);
+        }
+
+        async function deleteImage(path) {
+            if (!confirm('Are you sure you want to delete this image?')) return;
+
+            try {
+                await storage.ref(path).delete();
+                showToast('Image deleted successfully', 'success');
+                imageModal.classList.add('hidden');
+                loadImages();
+            } catch (error) {
+                console.error('Delete error:', error);
+                showToast('Failed to delete image', 'error');
+            }
+        }
+
+        // Toast notifications
+        function showToast(message, type = 'info') {
+            const colors = {
+                success: 'bg-success',
+                error: 'bg-danger',
+                info: 'bg-navy'
+            };
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg`;
+            toast.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.getElementById('toastContainer').appendChild(toast);
+
+            setTimeout(() => toast.remove(), 3000);
+        }
+    </script>
 
 </body>
 </html>
