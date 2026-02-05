@@ -39,11 +39,43 @@
 
     <style>
         html { scroll-behavior: smooth; }
-        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10, 22, 40, 0.15); }
+
+        /* Enhanced Hover Effects */
+        .hover-lift { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease; }
+        .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(10, 22, 40, 0.2); }
+
         .product-overlay { position: absolute; inset: 0; background: rgba(10, 22, 40, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
         .group:hover .product-overlay { opacity: 1; }
+
         .header-scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+        /* Staggered Reveal Animation */
+        .reveal-item { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal-item.active { opacity: 1; transform: translateY(0); }
+        .reveal-item:nth-child(1) { transition-delay: 0s; }
+        .reveal-item:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-item:nth-child(3) { transition-delay: 0.15s; }
+        .reveal-item:nth-child(4) { transition-delay: 0.2s; }
+        .reveal-item:nth-child(5) { transition-delay: 0.25s; }
+        .reveal-item:nth-child(6) { transition-delay: 0.3s; }
+        .reveal-item:nth-child(7) { transition-delay: 0.35s; }
+        .reveal-item:nth-child(8) { transition-delay: 0.4s; }
+
+        /* Scroll Progress */
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #B8860B, #D4A843); width: 0%; z-index: 9999; }
+
+        /* Back to Top */
+        .back-to-top { position: fixed; bottom: 90px; right: 24px; width: 50px; height: 50px; border-radius: 50%; background: #0A1628; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 49; border: none; }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { background: #1A2744; transform: translateY(-3px); }
+        .back-to-top svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+        .back-to-top circle { fill: none; stroke: #B8860B; stroke-width: 3; stroke-dasharray: 141.37; stroke-dashoffset: 141.37; }
+
+        /* WhatsApp Pulse */
+        .whatsapp-pulse { animation: whatsappPulse 2s infinite; }
+        @keyframes whatsappPulse { 0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.5); } 70% { box-shadow: 0 0 0 15px rgba(5, 150, 105, 0); } 100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); } }
+
+        /* Page Loader */
         .page-loader { position: fixed; inset: 0; background: #0A1628; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s ease; }
         .page-loader.hidden { opacity: 0; visibility: hidden; }
         .loader-images { display: flex; gap: 8px; margin-bottom: 24px; }
@@ -51,6 +83,9 @@
         .loader-images img:nth-child(1) { animation-delay: 0s; } .loader-images img:nth-child(2) { animation-delay: 0.2s; } .loader-images img:nth-child(3) { animation-delay: 0.4s; } .loader-images img:nth-child(4) { animation-delay: 0.6s; } .loader-images img:nth-child(5) { animation-delay: 0.8s; }
         @keyframes loaderPulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
         .loader-text { color: #B8860B; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
     </style>
 </head>
 <body class="font-body text-steel bg-white">
@@ -444,15 +479,47 @@
         </div>
     </footer>
 
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="22.5"></circle></svg>
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <a href="https://wa.me/905354124910?text=I'm%20interested%20in%20Premium%20Towels" target="_blank"
-        class="fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 rounded-full">
+        class="whatsapp-pulse fixed bottom-6 right-6 w-14 h-14 bg-success text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 rounded-full">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
     <script>
+        // Header scroll effect
         window.addEventListener('scroll', () => {
             document.getElementById('header').classList.toggle('header-scrolled', window.scrollY > 50);
         });
+
+        // Scroll progress & back to top
+        const scrollProgress = document.getElementById('scrollProgress');
+        const backToTop = document.getElementById('backToTop');
+        const progressCircle = backToTop.querySelector('circle');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollTop / docHeight;
+            scrollProgress.style.width = `${progress * 100}%`;
+            backToTop.classList.toggle('visible', scrollTop > 300);
+            progressCircle.style.strokeDashoffset = 141.37 * (1 - progress);
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Reveal animations
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.15, rootMargin: '-50px' });
+        document.querySelectorAll('.reveal-item').forEach(el => revealObserver.observe(el));
+
+        // Page loader
         const pageLoader = document.getElementById('pageLoader');
         window.addEventListener('load', () => { setTimeout(() => { pageLoader.classList.add('hidden'); }, 800); });
         document.querySelectorAll('a[href]').forEach(link => {
