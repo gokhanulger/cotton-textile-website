@@ -570,6 +570,15 @@
             transform: scale(1);
         }
     </style>
+
+    <!-- Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script> -->
 </head>
 <body class="font-body text-steel bg-white">
 
@@ -580,12 +589,12 @@
 
     <!-- Page Loader -->
     <div class="page-loader" id="pageLoader">
-        <div class="loader-images">
-            <img src="img-gallery/58d11d_Nazmi-AKyuz_RIO__SultansGem_(382).jpg" alt="">
-            <img src="img-gallery/5e97ae_Nazmi-AKyuz_aegean__SultansGem_(462).jpg" alt="">
-            <img src="img-gallery/9864ae_Nazmi-AKyuz_colorful__SultansGem_(342).jpg" alt="">
-            <img src="img-gallery/6b1968_Nazmi-AKyuz_SPRING__SultansGem_(362).jpg" alt="">
-            <img src="img-gallery/cfe886_Nazmi-AKyuz_palm__SultansGem_(326).jpg" alt="">
+        <div class="loader-images" aria-hidden="true">
+            <img src="img-gallery/58d11d_Nazmi-AKyuz_RIO__SultansGem_(382).jpg" alt="" loading="eager">
+            <img src="img-gallery/5e97ae_Nazmi-AKyuz_aegean__SultansGem_(462).jpg" alt="" loading="eager">
+            <img src="img-gallery/9864ae_Nazmi-AKyuz_colorful__SultansGem_(342).jpg" alt="" loading="eager">
+            <img src="img-gallery/6b1968_Nazmi-AKyuz_SPRING__SultansGem_(362).jpg" alt="" loading="eager">
+            <img src="img-gallery/cfe886_Nazmi-AKyuz_palm__SultansGem_(326).jpg" alt="" loading="eager">
         </div>
         <div class="loader-text">Cotton Textile</div>
     </div>
@@ -638,8 +647,9 @@
                         </button>
                         <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <div class="bg-white border border-gray-200 shadow-xl min-w-[200px]">
-                                <a href="peshtemals.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
-                                    <i class="fas fa-water text-gold mr-2"></i>Peshtemals
+                                <a href="beaches-hotels.html" class="block px-5 py-3 text-sm text-navy font-medium bg-gold/10 hover:bg-gold/20 transition-colors border-b border-gray-100">
+                                    <i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels
+                                    <span class="ml-2 text-xs bg-gold text-navy px-1.5 py-0.5 rounded">HOT</span>
                                 </a>
                                 <a href="towels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
                                     <i class="fas fa-spa text-gold mr-2"></i>Towels
@@ -647,8 +657,8 @@
                                 <a href="robes.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors border-b border-gray-100">
                                     <i class="fas fa-tshirt text-gold mr-2"></i>Robes
                                 </a>
-                                <a href="beaches-hotels.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors">
-                                    <i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels
+                                <a href="peshtemals.html" class="block px-5 py-3 text-sm text-steel hover:bg-pearl hover:text-navy transition-colors">
+                                    <i class="fas fa-water text-gold mr-2"></i>Peshtemals
                                 </a>
                             </div>
                         </div>
@@ -668,19 +678,19 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center text-navy">
-                    <i class="fas fa-bars text-xl"></i>
+                <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center text-navy" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </nav>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-2xl lg:hidden z-50">
+        <nav id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-2xl lg:hidden z-50" role="navigation" aria-label="Mobile navigation">
             <div class="p-6 h-full flex flex-col">
                 <div class="flex justify-between items-center mb-10">
                     <span class="font-display text-xl text-navy">Menu</span>
-                    <button id="closeMobileMenu" class="w-10 h-10 flex items-center justify-center">
-                        <i class="fas fa-times text-xl text-navy"></i>
+                    <button id="closeMobileMenu" class="w-10 h-10 flex items-center justify-center" aria-label="Close navigation menu">
+                        <i class="fas fa-times text-xl text-navy" aria-hidden="true"></i>
                     </button>
                 </div>
                 <ul class="flex flex-col gap-1 flex-1">
@@ -691,8 +701,9 @@
                             <i class="fas fa-chevron-down text-xs transition-transform" id="mobileProductsIcon"></i>
                         </button>
                         <div id="mobileProductsMenu" class="hidden bg-pearl/50">
-                            <a href="peshtemals.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
-                                <i class="fas fa-water text-gold mr-2"></i>Peshtemals
+                            <a href="beaches-hotels.html" class="block px-8 py-2 text-sm text-navy font-medium bg-gold/10">
+                                <i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels
+                                <span class="ml-1 text-xs bg-gold text-navy px-1 py-0.5 rounded">HOT</span>
                             </a>
                             <a href="towels.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
                                 <i class="fas fa-spa text-gold mr-2"></i>Towels
@@ -700,8 +711,8 @@
                             <a href="robes.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
                                 <i class="fas fa-tshirt text-gold mr-2"></i>Robes
                             </a>
-                            <a href="beaches-hotels.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
-                                <i class="fas fa-umbrella-beach text-gold mr-2"></i>Beaches & Hotels
+                            <a href="peshtemals.html" class="block px-8 py-2 text-sm text-steel hover:text-navy transition-colors">
+                                <i class="fas fa-water text-gold mr-2"></i>Peshtemals
                             </a>
                         </div>
                     </li>
@@ -1017,6 +1028,71 @@
         </div>
     </section>
 
+    <!-- Why Choose Us Section -->
+    <section class="py-20 md:py-28 bg-pearl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-8 h-px bg-gold"></div>
+                    <span class="text-gold text-sm font-medium tracking-wider uppercase">Why Choose Us</span>
+                    <div class="w-8 h-px bg-gold"></div>
+                </div>
+                <h2 class="font-display text-3xl md:text-4xl text-navy mb-4">
+                    Your Trusted B2B Partner
+                </h2>
+                <p class="text-slate text-lg">
+                    What sets us apart from other textile manufacturers
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6 bg-white border border-gray-200 reveal-item">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg text-navy mb-2">Fast Production</h3>
+                    <p class="text-slate text-sm">2-3 week turnaround on orders. Express options available for urgent requirements.</p>
+                </div>
+                <div class="text-center p-6 bg-white border border-gray-200 reveal-item">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tags text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg text-navy mb-2">Private Label</h3>
+                    <p class="text-slate text-sm">Custom branding, labels, and packaging. Your brand, our quality manufacturing.</p>
+                </div>
+                <div class="text-center p-6 bg-white border border-gray-200 reveal-item">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-box text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg text-navy mb-2">Low MOQ</h3>
+                    <p class="text-slate text-sm">Flexible minimum orders starting from 100 pieces. Perfect for testing new markets.</p>
+                </div>
+                <div class="text-center p-6 bg-white border border-gray-200 reveal-item">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg text-navy mb-2">Dedicated Support</h3>
+                    <p class="text-slate text-sm">Personal account manager for each client. 24/7 communication via WhatsApp.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 grid sm:grid-cols-3 gap-6 text-center">
+                <div class="p-4 reveal-item">
+                    <div class="text-4xl font-bold text-navy mb-1"><span class="stat-counter" data-target="500">0</span>+</div>
+                    <p class="text-slate text-sm">Happy B2B Clients</p>
+                </div>
+                <div class="p-4 reveal-item">
+                    <div class="text-4xl font-bold text-navy mb-1"><span class="stat-counter" data-target="50">0</span>+</div>
+                    <p class="text-slate text-sm">Export Countries</p>
+                </div>
+                <div class="p-4 reveal-item">
+                    <div class="text-4xl font-bold text-navy mb-1"><span class="stat-counter" data-target="98">0</span>%</div>
+                    <p class="text-slate text-sm">Repeat Order Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Products Section -->
     <section id="products" class="py-20 md:py-28 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1043,7 +1119,7 @@
                 <a href="products/foca.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/a36cc5_Nazmi_sku-stone-display-foca__Ba%C5%9Fl%C4%B1ks%C4%B1z-2.jpg"
-                            alt="Foca Peshtemal"
+                            alt="Foca Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-3 left-3 px-2 py-1 bg-navy text-white text-xs font-medium">
                             Best Seller
@@ -1059,7 +1135,7 @@
                 <a href="products/bodrum.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/6f60c5_Nazmi_sku-sultan-display-bodrum__IMG_0002.jpg"
-                            alt="Bodrum Peshtemal"
+                            alt="Bodrum Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-4">
@@ -1072,7 +1148,7 @@
                 <a href="products/cesme.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/a0ddab_Nazmi_sku-sultantrend-display-cesme__IMG_0074.jpg"
-                            alt="Cesme Peshtemal"
+                            alt="Cesme Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
                             New
@@ -1088,7 +1164,7 @@
                 <a href="products/datca.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/248058_Nazmi_sku-vegas-display-datca__SultansGem_(534).jpg"
-                            alt="Datca Peshtemal"
+                            alt="Datca Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-4">
@@ -1101,7 +1177,7 @@
                 <a href="products/fethiye.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/1c689c_Nazmi_sku-zebra-display-fethiye__Ba%C5%9Fl%C4%B1ks%C4%B1z-65.jpg"
-                            alt="Fethiye Peshtemal"
+                            alt="Fethiye Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-4">
@@ -1114,7 +1190,7 @@
                 <a href="products/kas.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/f632d0_Nazmi_sku-multicolor-display-kas__SultansGem_(442).jpg"
-                            alt="Kas Peshtemal"
+                            alt="Kas Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-3 left-3 px-2 py-1 bg-success text-white text-xs font-medium">
                             Popular
@@ -1130,7 +1206,7 @@
                 <a href="products/akyaka.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/b07c2e_Nazmi_sku-mandala-display-akyaka__SultansGem_(402).jpg"
-                            alt="Akyaka Peshtemal"
+                            alt="Akyaka Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-4">
@@ -1143,7 +1219,7 @@
                 <a href="products/alacati.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/64a4cf_Nazmi_sku-mikrokoton-display-alacati__IMG_0034.jpg"
-                            alt="Alacati Peshtemal"
+                            alt="Alacati Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-4">
@@ -1156,7 +1232,7 @@
                 <a href="products/asos.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/8b6e4c_Nazmi_sku-netherland-display-asos__Ba%C5%9Fl%C4%B1ks%C4%B1z-79.jpg"
-                            alt="Asos Peshtemal"
+                            alt="Asos Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-4">
@@ -1169,7 +1245,7 @@
                 <a href="products/yalikavak.html" class="group hover-lift bg-white border border-gray-200 reveal-item">
                     <div class="relative aspect-square overflow-hidden bg-pearl">
                         <img src="img-gallery/d93570_Nazmi_sku-bugra-display-yalikavak__Ba%C5%9Fl%C4%B1ks%C4%B1z-83.jpg"
-                            alt="Yalikavak Peshtemal"
+                            alt="Yalikavak Peshtemal" loading="lazy"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-3 left-3 px-2 py-1 bg-gold text-navy text-xs font-medium">
                             Premium
@@ -1189,12 +1265,31 @@
                     <h3 class="font-display text-2xl md:text-3xl text-navy mb-4">Explore Our Collections</h3>
                     <p class="text-slate">Premium Turkish textile products for every need</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Featured: Beach & Hotels Collection (Full Width) -->
+                <a href="beaches-hotels.html" class="group relative overflow-hidden hover-lift mb-6 block">
+                    <div class="aspect-[21/9] md:aspect-[3/1] overflow-hidden">
+                        <img src="img-gallery/9c8598_Nazmi-AKyuz_aegean__SultansGem_(465).jpg"
+                            alt="Beach and Hotel Textiles Collection" loading="lazy"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/60 to-transparent flex items-center p-8 md:p-12">
+                        <div class="max-w-lg">
+                            <span class="inline-block px-3 py-1 bg-gold text-navy text-xs font-bold uppercase tracking-wider mb-4">Featured Collection</span>
+                            <h4 class="font-display text-2xl md:text-4xl text-white mb-3">Beaches & Hotels</h4>
+                            <p class="text-white/80 text-sm md:text-base mb-4">Complete textile solutions for luxury resorts, beach clubs, and 5-star hotels. Pool towels, beach peshtemals, spa accessories.</p>
+                            <span class="inline-flex items-center gap-2 text-gold font-medium group-hover:gap-4 transition-all">
+                                Explore Collection <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="grid md:grid-cols-3 gap-6">
                     <!-- Towels -->
                     <a href="towels.html" class="group relative overflow-hidden hover-lift">
                         <div class="aspect-[4/3] overflow-hidden">
                             <img src="img-hotel/81AGfFUDVaL._AC_SL1500_.jpg"
-                                alt="Premium Turkish Towels"
+                                alt="Premium Turkish Towels" loading="lazy"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent flex items-end p-6">
@@ -1208,7 +1303,7 @@
                     <a href="robes.html" class="group relative overflow-hidden hover-lift">
                         <div class="aspect-[4/3] overflow-hidden">
                             <img src="img-gallery/fa9b7e_Nazmi-AKyuz_STONEWASHED-WAFFLE__IMG_2592.jpg"
-                                alt="Luxury Turkish Bathrobes"
+                                alt="Luxury Turkish Bathrobes" loading="lazy"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent flex items-end p-6">
@@ -1222,27 +1317,13 @@
                     <a href="peshtemals.html" class="group relative overflow-hidden hover-lift">
                         <div class="aspect-[4/3] overflow-hidden">
                             <img src="img-gallery/58d11d_Nazmi-AKyuz_RIO__SultansGem_(382).jpg"
-                                alt="Turkish Peshtemal Towels"
+                                alt="Turkish Peshtemal Towels" loading="lazy"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent flex items-end p-6">
                             <div>
                                 <h4 class="font-display text-xl text-white mb-1">Turkish Peshtemals</h4>
                                 <p class="text-white/70 text-sm">Traditional Handwoven</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Beach & Hotels -->
-                    <a href="beaches-hotels.html" class="group relative overflow-hidden hover-lift">
-                        <div class="aspect-[4/3] overflow-hidden">
-                            <img src="img-gallery/9c8598_Nazmi-AKyuz_aegean__SultansGem_(465).jpg"
-                                alt="Beach and Hotel Textiles"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent flex items-end p-6">
-                            <div>
-                                <h4 class="font-display text-xl text-white mb-1">Beaches & Hotels</h4>
-                                <p class="text-white/70 text-sm">Resort Collections</p>
                             </div>
                         </div>
                     </a>
@@ -1678,7 +1759,7 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-white mb-1">Email</h4>
-                                <p class="text-white/60">info@theturkishcotton.com<br>info@theturkishcotton.com</p>
+                                <p class="text-white/60">info@theturkishcotton.com</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
@@ -1753,6 +1834,24 @@
                                     placeholder="Please describe your requirements, quantities, and any specific needs..."></textarea>
                             </div>
 
+                            <div>
+                                <label class="block text-sm font-medium text-navy mb-3">Preferred Contact Method</label>
+                                <div class="flex flex-wrap gap-4">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="contact_method" value="whatsapp" checked class="w-4 h-4 text-navy">
+                                        <span class="text-sm text-steel">WhatsApp</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="contact_method" value="email" class="w-4 h-4 text-navy">
+                                        <span class="text-sm text-steel">Email</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="contact_method" value="phone" class="w-4 h-4 text-navy">
+                                        <span class="text-sm text-steel">Phone Call</span>
+                                    </label>
+                                </div>
+                            </div>
+
                             <button type="submit"
                                 class="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-navy text-white font-semibold hover:bg-navy-light transition-colors">
                                 <i class="fas fa-paper-plane"></i>
@@ -1810,10 +1909,10 @@
                 <div>
                     <h4 class="font-semibold text-white mb-6">Products</h4>
                     <ul class="space-y-3">
-                        <li><a href="peshtemals.html" class="text-white/60 hover:text-gold transition-colors">Peshtemals</a></li>
+                        <li><a href="beaches-hotels.html" class="text-gold hover:text-gold-light transition-colors font-medium">Beaches & Hotels</a></li>
                         <li><a href="towels.html" class="text-white/60 hover:text-gold transition-colors">Towels</a></li>
                         <li><a href="robes.html" class="text-white/60 hover:text-gold transition-colors">Robes</a></li>
-                        <li><a href="beaches-hotels.html" class="text-white/60 hover:text-gold transition-colors">Beaches & Hotels</a></li>
+                        <li><a href="peshtemals.html" class="text-white/60 hover:text-gold transition-colors">Peshtemals</a></li>
                     </ul>
                 </div>
 
@@ -1907,15 +2006,28 @@
             mobileProductsIcon.classList.toggle('rotate-180');
         });
 
+        // ========== THROTTLE UTILITY ==========
+        function throttle(fn, wait) {
+            let lastTime = 0;
+            return function(...args) {
+                const now = Date.now();
+                if (now - lastTime >= wait) {
+                    lastTime = now;
+                    fn.apply(this, args);
+                }
+            };
+        }
+
         // ========== HEADER SCROLL ==========
         const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
+        const handleHeaderScroll = throttle(() => {
             if (window.scrollY > 50) {
                 header.classList.add('header-scrolled');
             } else {
                 header.classList.remove('header-scrolled');
             }
-        });
+        }, 16);
+        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
 
         // ========== SCROLL PROGRESS BAR ==========
         const scrollProgress = document.getElementById('scrollProgress');
@@ -1923,7 +2035,7 @@
         const progressCircle = backToTop.querySelector('circle');
         const circumference = 141.37;
 
-        function updateScrollProgress() {
+        const updateScrollProgress = throttle(() => {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = scrollTop / docHeight;
@@ -1937,8 +2049,8 @@
             // Update progress circle
             const offset = circumference * (1 - progress);
             progressCircle.style.strokeDashoffset = offset;
-        }
-        window.addEventListener('scroll', updateScrollProgress);
+        }, 16);
+        window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2113,6 +2225,13 @@
                 return;
             }
 
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+
             let whatsappMessage = `B2B Inquiry from Website%0A%0A`;
             whatsappMessage += `*Name:* ${name}%0A`;
             whatsappMessage += `*Company:* ${company}%0A`;
@@ -2130,7 +2249,19 @@
         function showNotification(message, type) {
             const notification = document.createElement('div');
             notification.className = `fixed top-24 right-6 px-6 py-4 rounded-lg shadow-xl z-[9999] transform translate-x-full transition-transform duration-300 ${type === 'success' ? 'bg-success text-white' : 'bg-red-600 text-white'}`;
-            notification.innerHTML = `<div class="flex items-center gap-3"><i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i><span>${message}</span></div>`;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex items-center gap-3';
+
+            const icon = document.createElement('i');
+            icon.className = `fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`;
+
+            const text = document.createElement('span');
+            text.textContent = message;
+
+            wrapper.appendChild(icon);
+            wrapper.appendChild(text);
+            notification.appendChild(wrapper);
             document.body.appendChild(notification);
 
             setTimeout(() => notification.style.transform = 'translateX(0)', 100);
